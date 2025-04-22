@@ -72,6 +72,9 @@ export class User {
 
   @Prop({ default: Date.now() })
   createdAt: Date;
+
+  @Prop({ required: true, default: 1000, type: Number, min: 0 }) // Ensure balance is a positive number
+  balance: number;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

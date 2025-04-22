@@ -44,13 +44,19 @@ export class AuthService {
         'Authentication failed: Invalid email or password',
       );
     }
-
-    // Secondly, check if the OTP code is correct
-    const isValidOtp = await this.emailService.isValidOtp(loginDto);
-    if (!isValidOtp) {
-      throw new UnauthorizedException(
-        'Authentication failed: Invalid verification code',
-      );
+    // Bypass OTP validation for test accounts
+    const testAccounts = [
+      'test.user.account1@example.com',
+      'test.user.account2@example.com',
+    ];
+    if (!testAccounts.includes(email)) {
+      // Secondly, check if the OTP code is correct for non-test accounts
+      const isValidOtp = await this.emailService.isValidOtp(loginDto);
+      if (!isValidOtp) {
+        throw new UnauthorizedException(
+          'Authentication failed: Invalid verification code',
+        );
+      }
     }
 
     // if Everything is correct, then update the user's isVerified to true
@@ -155,7 +161,6 @@ export class AuthService {
 
     if (!user) {
       throw new NotFoundException('Unable to find user');
-      
     }
 
     // Hash the new password

@@ -1,4 +1,3 @@
-// src/app.module.ts
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
@@ -11,15 +10,29 @@ import { SubscriptionModule } from './subscription/subscription.module';
 import { JwtConfig } from './config/jwt.config';
 import { StripeModule } from './stripe/stripe.module';
 import { SubscriptionGuard } from './common/guards/subscription.guard';
+import { FintechModule } from './fintech/fintech.module';
+import { TransactionModule } from './transaction/transaction.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/SandBoxPortal'),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    MongooseModule.forRootAsync({
+      useFactory: (configService: ConfigService) => ({
+        uri: configService.get<string>('DATABASE_URL'),
+      }),
+      inject: [ConfigService],
+    }),
     AuthModule,
     UserModule,
     EmailModule,
     JwtConfig,
     SubscriptionModule,
     StripeModule,
+    FintechModule,
+    TransactionModule,
   ],
   controllers: [],
   providers: [
