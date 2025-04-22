@@ -14,5 +14,6 @@ import { JwtConfig } from 'src/config/jwt.config';
   ],
   controllers: [StripeController],
   providers: [StripeService],
+  exports: [StripeService],
 })
 export class StripeModule {}

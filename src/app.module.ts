@@ -10,6 +10,7 @@ import { AuthGuard } from './common/guards/jwt-auth.guard';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { JwtConfig } from './config/jwt.config';
 import { StripeModule } from './stripe/stripe.module';
+import { SubscriptionGuard } from './common/guards/subscription.guard';
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost:27017/SandBoxPortal'),
@@ -26,6 +27,10 @@ import { StripeModule } from './stripe/stripe.module';
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: SubscriptionGuard, // Global SubscriptionGuard for subscription checks
     },
   ],
 })

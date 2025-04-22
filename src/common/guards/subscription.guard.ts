@@ -47,6 +47,7 @@ export class SubscriptionGuard implements CanActivate {
       if (!isSubscribed && requiredSubscription) {
         throw new HttpException('Subscription required', HttpStatus.FORBIDDEN);
       }
+      
 
       request.user = payload; // Optionally attach user payload to the request
       return true;
