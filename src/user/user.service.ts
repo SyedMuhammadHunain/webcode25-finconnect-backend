@@ -40,11 +40,12 @@ export class UserService {
         password: hashedPassword,
         role: Role.DEVELOPER,
         isVerified: false,
-        isSubscribed: false,
-        subscriptionType: SubscriptionType.FREE,
         image:
           image ||
           'https://res.cloudinary.com/dtepgit65/image/upload/v1744490854/Ridee/Default/profileimage.png',
+        isSubscribed: false,
+        subscriptionType: SubscriptionType.BASIC,
+        subscriptionExpiry: null,
       });
 
       // Save the user to the database

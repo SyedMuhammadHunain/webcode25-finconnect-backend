@@ -45,7 +45,7 @@ export class User {
   @Prop({
     type: String,
     enum: Object.values(SubscriptionType),
-    default: SubscriptionType.FREE,
+    default: SubscriptionType.BASIC,
   })
   subscriptionType: SubscriptionType;
 
@@ -54,6 +54,15 @@ export class User {
       'https://res.cloudinary.com/dtepgit65/image/upload/v1744490854/Ridee/Default/profileimage.png',
   })
   image: string;
+
+  @Prop({ type: Date, default: null })
+  subscriptionExpiry?: Date | null;
+
+  @Prop({ type: String, default: null }) // Add this line
+  stripeCustomerId?: string;
+
+  @Prop({ type: String, default: null }) // Add this line
+  stripeSubscriptionId?: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

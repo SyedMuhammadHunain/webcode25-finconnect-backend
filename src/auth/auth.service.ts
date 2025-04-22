@@ -71,6 +71,7 @@ export class AuthService {
     const payload = {
       sub: (user._id as string).toString(),
       role: user.role,
+      isVerified: user.isVerified,
     };
 
     return this.jwtService.sign(payload, {
