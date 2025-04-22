@@ -63,6 +63,15 @@ export class User {
 
   @Prop({ type: String, default: null }) // Add this line
   stripeSubscriptionId?: string;
+
+  @Prop({ default: null })
+  passwordResetToken: string;
+
+  @Prop({ default: null })
+  passwordResetTokenExpiresAt: Date;
+
+  @Prop({ default: Date.now() })
+  createdAt: Date;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

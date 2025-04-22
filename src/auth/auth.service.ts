@@ -14,7 +14,10 @@ import { Auth } from 'src/schemas/auth.schema';
 import { Model } from 'mongoose';
 import { EmailService } from 'src/email/email.service';
 import { LoginDto } from 'src/dtos/login.dto';
-
+import { ForgotPasswordDto } from 'src/dtos/forgot-password.dto';
+import { NotFoundException } from '@nestjs/common';
+import cryptoRandomString from 'crypto-random-string';
+import { ResetPasswordDto } from 'src/dtos/update-password.dto';
 @Injectable()
 export class AuthService {
   constructor(
@@ -98,4 +101,78 @@ export class AuthService {
 
   //   return { message: 'Login successful', token };
   // }
+
+  async forgotPassword(forgotPasswordDto: ForgotPasswordDto): Promise<{
+    passwordResetToken: string;
+    passwordResetTokenExpiresAt: Date;
+  }> {
+    const { email } = forgotPasswordDto;
+
+    // Find the user with the email
+    const user = await this.userModel.findOne({ email });
+    if (!user) {
+      throw new NotFoundException(
+        'Account not found: No user registered with this email',
+      );
+    }
+
+    // Generate a password reset token
+    const passwordResetToken = await this.generatePasswordResetToken();
+    const calculateExpiry = new Date(Date.now() + 500000); // 5 minutes
+
+    // Save the password reset token to the database temporarily
+    await this.userModel.updateOne(
+      { email },
+      {
+        $set: {
+          passwordResetToken,
+          passwordResetTokenExpiresAt: calculateExpiry,
+        },
+      },
+    );
+
+    // Send the password reset token to the user's email
+    await this.emailService.sendEmail(email);
+
+    return { passwordResetToken, passwordResetTokenExpiresAt: calculateExpiry };
+  }
+
+  async generatePasswordResetToken(): Promise<string> {
+    const resetToken = cryptoRandomString({ length: 30, type: 'alphanumeric' });
+    return resetToken;
+  }
+
+  async passwordUpdate(
+    resetPasswordDto: ResetPasswordDto,
+    userId: string,
+  ): Promise<{ message: string }> {
+    const { newPassword } = resetPasswordDto;
+
+    // Find the user with the provided token
+    const user = await this.userModel.findOne({
+      _id: userId,
+    });
+
+    if (!user) {
+      throw new NotFoundException('Unable to find user');
+      
+    }
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update the user's password and clear the reset token
+    await this.userModel.updateOne(
+      { _id: user._id },
+      {
+        $set: {
+          password: hashedPassword,
+          passwordResetToken: null,
+          passwordResetTokenExpiresAt: null,
+        },
+      },
+    );
+
+    return { message: 'Password updated successfully' };
+  }
 }

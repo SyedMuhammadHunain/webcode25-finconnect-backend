@@ -30,7 +30,7 @@ import { SubscriptionGuard } from './common/guards/subscription.guard';
     },
     {
       provide: APP_GUARD,
-      useClass: SubscriptionGuard, // Global SubscriptionGuard for subscription checks
+      useClass: SubscriptionGuard,
     },
   ],
 })

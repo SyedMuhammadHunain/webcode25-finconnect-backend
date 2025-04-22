@@ -9,6 +9,9 @@ import { Request } from 'express';
 import { IS_PUBLIC_KEY } from 'src/common/decorators/public.decorator';
 import { Reflector } from '@nestjs/core';
 import { Logger } from '@nestjs/common';
+import { Model } from 'mongoose';
+import { User } from 'src/schemas/user.schema';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -16,6 +19,7 @@ export class AuthGuard implements CanActivate {
   constructor(
     private reflector: Reflector,
     private jwtService: JwtService,
+    @InjectModel('User') private readonly userModel: Model<User>,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -43,6 +47,9 @@ export class AuthGuard implements CanActivate {
       });
       request.user = payload;
 
+      // const user = await this.userModel
+      //   .findOne({ _id: payload.sub, role: payload.role })
+      //   .select('-password');
       // Check if the token is expired (optional, but good practice)
       const now = Math.floor(Date.now() / 1000); // Current time in seconds
       if (payload.exp && payload.exp < now) {
