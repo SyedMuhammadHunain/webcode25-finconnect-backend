@@ -2,5 +2,5 @@
 export enum SubscriptionType {
   BASIC = 'basic',
   STANDARD = 'standard',
-  PRO = 'pro',
+  PREMIUM = 'premium',
 }
