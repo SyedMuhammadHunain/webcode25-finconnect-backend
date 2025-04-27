@@ -18,6 +18,7 @@ import { ForgotPasswordDto } from 'src/dtos/forgot-password.dto';
 import { NotFoundException } from '@nestjs/common';
 import cryptoRandomString from 'crypto-random-string';
 import { ResetPasswordDto } from 'src/dtos/update-password.dto';
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -111,6 +112,7 @@ export class AuthService {
   async forgotPassword(forgotPasswordDto: ForgotPasswordDto): Promise<{
     passwordResetToken: string;
     passwordResetTokenExpiresAt: Date;
+    passwordResetLink?: string;
   }> {
     const { email } = forgotPasswordDto;
 
@@ -137,10 +139,10 @@ export class AuthService {
       },
     );
 
-    // Send the password reset token to the user's email
-    await this.emailService.sendEmail(email);
+    // Send the password reset token to the user's email (now with link)
+    const passwordResetLink = await this.emailService.sendEmail(email, passwordResetToken);
 
-    return { passwordResetToken, passwordResetTokenExpiresAt: calculateExpiry };
+    return { passwordResetToken, passwordResetTokenExpiresAt: calculateExpiry, passwordResetLink };
   }
 
   async generatePasswordResetToken(): Promise<string> {

@@ -51,7 +51,7 @@ export class AuthController {
   @Patch('update-password')
   async updatePassword(
     @Body() resetPasswordDto: ResetPasswordDto,
-    @Req() req: CustomRequest,
+    @Req() req: CustomRequest
   ) {
     const userId = req.user.sub;
     return this.authService.passwordUpdate(resetPasswordDto, userId);

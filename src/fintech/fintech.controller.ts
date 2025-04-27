@@ -12,6 +12,7 @@ import { AuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { CustomRequest } from 'src/common/interfaces/custom-request.interface';
 // import { Public } from 'src/common/decorators/public.decorator';
 import { TransferFundsDto } from 'src/dtos/fintech-transfer.dto';
+
 @Controller('api')
 @UseGuards(AuthGuard) // Ensure all routes require JWT
 export class FintechController {

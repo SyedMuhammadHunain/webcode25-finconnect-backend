@@ -14,11 +14,11 @@ export class SubscriptionController {
   @Post('subscribe')
   async subscribe(
     @Req() req: CustomRequest,
-    @Body('subscriptionType') subscriptionType: SubscriptionType,
+    @Body() body: { subscriptionType: SubscriptionType; amount: number },
   ): Promise<{ message: string }> {
     const userId = req.user.sub;
-    await this.subscriptionService.subscribe(userId, subscriptionType);
-    return { message: `Subscribed to ${subscriptionType}` };
+    await this.subscriptionService.subscribe(userId, body.subscriptionType, body.amount);
+    return { message: `Subscribed to ${body.subscriptionType}` };
   }
 
   @Post('cancel')

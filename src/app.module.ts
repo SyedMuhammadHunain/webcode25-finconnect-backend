@@ -13,7 +13,6 @@ import { SubscriptionGuard } from './common/guards/subscription.guard';
 import { FintechModule } from './fintech/fintech.module';
 import { TransactionModule } from './transaction/transaction.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-
 @Module({
   imports: [
     ConfigModule.forRoot({

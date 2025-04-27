@@ -12,6 +12,7 @@ export class SubscriptionService {
   async subscribe(
     userId: string,
     subscriptionType: SubscriptionType,
+    amount: number,
   ): Promise<void> {
     const user = await this.userModel.findById(userId);
     if (!user) {
@@ -20,6 +21,7 @@ export class SubscriptionService {
 
     user.isSubscribed = true;
     user.subscriptionType = subscriptionType;
+    user.subscriptionAmount = amount;
 
     // Set subscription expiry (example: 30 days)
     const expiryDate = new Date();
@@ -40,5 +42,10 @@ export class SubscriptionService {
     user.subscriptionExpiry = null;
 
     await user.save();
+  }
+
+  async adminCancelSubscription(userId: string): Promise<void> {
+    // For admin: forcibly cancel a user's subscription
+    return this.cancel(userId);
   }
 }

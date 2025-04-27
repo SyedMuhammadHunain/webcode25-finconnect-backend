@@ -3,7 +3,6 @@ import { Document } from 'mongoose';
 import { Role } from 'src/common/enums/roles.enum';
 import { SubscriptionType } from 'src/common/enums/subscriptionType.enum';
 
-// ✅ Rename the interface to avoid conflict
 export interface User {
   _id: string;
   username: string;
@@ -15,7 +14,6 @@ export interface User {
   role: Role;
 }
 
-// ✅ Define the document type
 export type UserDocument = User & Document;
 
 @Schema()
@@ -58,11 +56,17 @@ export class User {
   @Prop({ type: Date, default: null })
   subscriptionExpiry?: Date | null;
 
-  @Prop({ type: String, default: null }) // Add this line
+  @Prop({ type: String, default: null }) 
   stripeCustomerId?: string;
 
-  @Prop({ type: String, default: null }) // Add this line
+  @Prop({ type: String, default: null }) 
   stripeSubscriptionId?: string;
+
+  @Prop({ type: String, default: null })
+  subscriptionPlan?: string;
+
+  @Prop({ type: Number, default: null })
+  subscriptionAmount?: number;
 
   @Prop({ default: null })
   passwordResetToken: string;
@@ -73,7 +77,7 @@ export class User {
   @Prop({ default: Date.now() })
   createdAt: Date;
 
-  @Prop({ required: true, default: 1000, type: Number, min: 0 }) // Ensure balance is a positive number
+  @Prop({ required: true, default: 1000, type: Number, min: 0 }) 
   balance: number;
 }
 

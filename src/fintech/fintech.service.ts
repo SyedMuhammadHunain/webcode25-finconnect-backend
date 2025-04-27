@@ -33,30 +33,30 @@ export class FintechService {
     amount: number | string, // <- allow string just in case
   ): Promise<{ message: string }> {
     const numericAmount = Number(amount);
-  
+
     if (isNaN(numericAmount) || numericAmount <= 0) {
       throw new BadRequestException(
         'Transfer amount must be a valid number greater than zero',
       );
     }
-  
+
     const sourceUser = await this.userModel.findById(sourceAccountId);
     const destinationUser = await this.userModel.findById(destinationAccountId);
-  
+
     if (!sourceUser || !destinationUser) {
       throw new NotFoundException('Source or destination account not found');
     }
-  
+
     if (sourceUser.balance < numericAmount) {
       throw new BadRequestException('Insufficient balance');
     }
-  
+
     // Perform the transfer
     sourceUser.balance -= numericAmount;
     destinationUser.balance += numericAmount;
     await sourceUser.save();
     await destinationUser.save();
-  
+
     // Log the transaction
     await this.transactionModel.create({
       sourceAccountId,
@@ -64,10 +64,10 @@ export class FintechService {
       amount: numericAmount,
       description: `Transfer of $${numericAmount} from ${sourceUser.username} to ${destinationUser.username}`,
     });
-  
+
     return { message: 'Transfer successful' };
   }
-  
+
   async getTransactions(userId: string, page: number, pageSize: number) {
     const transactions = await this.transactionModel
       .find({

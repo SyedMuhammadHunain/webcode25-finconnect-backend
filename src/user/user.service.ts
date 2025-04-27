@@ -21,13 +21,10 @@ export class UserService {
     try {
       // Check if the user already exists
       const existingUser = await this.userModel.findOne({ email }).exec();
-      const existingUsername = await this.userModel
-        .findOne({ username })
-        .exec();
-      if (existingUser || existingUsername) {
+      if (existingUser) {
         throw new ConflictException(
-          'User with this username or email already exists',
-        );
+          'User with this email already exists',
+        ); 
       }
 
       // Hash the password
@@ -47,6 +44,7 @@ export class UserService {
         subscriptionType: SubscriptionType.BASIC,
         subscriptionExpiry: null,
       });
+      
 
       // Save the user to the database
       return await user.save();
@@ -56,8 +54,4 @@ export class UserService {
       throw new InternalServerErrorException('Failed to create user');
     }
   }
-
-  // async findByUsername(username: string): Promise<User | null> {
-  //   return await this.userModel.findOne({ username });
-  // }
 }

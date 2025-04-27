@@ -1,99 +1,125 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🚀 FinConnect - Backend Application Only
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Welcome to **FinConnect**! This project is a backend sandbox portal where developers can register, subscribe to a plan, and access a suite of mock financial APIs. The system is secured with JWT and RBAC, and is designed for extensibility, clean code, and modern developer experience.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## ✨ Features
+- 🔐 User authentication & registration
+- ✉️ Password reset and OTP
+- 🛡️ JWT-based authorization
+- 💳 Subscription management (Stripe integration)
+- 💸 Fintech operations: balance, transfers, transactions, invoices
+- 🧩 Modular, service-oriented architecture
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+## 📦 Table of Contents
+- [Project Overview](#project-overview)
+- [Installation](#installation)
+- [Running the App](#running-the-app)
+- [API Endpoints](#api-endpoints)
+- [Testing](#testing)
+- [Environment Variables](#environment-variables)
+- [Project Structure](#project-structure)
 
-```bash
-$ npm install
-```
+---
 
-## Compile and run the project
+## ⚙️ Installation
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
+---
+
+## ▶️ Running the App
 
 ```bash
-# unit tests
-$ npm run test
+# Development
+npm run start
 
-# e2e tests
-$ npm run test:e2e
+# Watch mode (auto-reload)
+npm run start:dev
 
-# test coverage
-$ npm run test:cov
+# Production
+npm run start:prod
 ```
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## 📑 API Endpoints
+See [`ENDPOINTS.md`](./ENDPOINTS.md) for a full list of available API endpoints, grouped by module/feature.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+---
+
+## 🧪 Testing
 
 ```bash
-$ npm install -g mau
-$ mau deploy
+# Unit tests
+npm run test
+
+# End-to-end tests
+npm run test:e2e
+
+# Test coverage
+npm run test:cov
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+## 🔑 Environment Variables
+- Copy `.env.example` to `.env` (if exists) or create a `.env` file in the root directory.
+- Fill in all required variables (database, JWT, Stripe, etc). Example:
 
-Check out a few resources that may come in handy when working with NestJS:
+```
+DATABASE_URL=mongodb://localhost:27017/your-db
+JWT_SECRET=your_jwt_secret
+STRIPE_SECRET_KEY=your_stripe_secret
+MAIL_USER=your_email_user
+MAIL_PASS=your_email_pass
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Refer to the codebase and `.env` for the full list of required variables.
 
-## Support
+---
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## 🗂️ Project Structure
 
-## Stay in touch
+```
+backend/
+├── src/
+│   ├── app.controller.ts
+│   ├── app.module.ts
+│   ├── app.service.ts
+│   ├── main.ts
+│   ├── auth/           # Authentication logic
+│   ├── common/         # Shared code (guards, enums, decorators, interfaces)
+│   ├── config/         # Configuration files (JWT, mailer)
+│   ├── dtos/           # Data transfer objects (request/response schemas)
+│   ├── email/          # Email/OTP logic
+│   ├── fintech/        # Fintech operations (balance, transfer, transactions, invoice)
+│   ├── schemas/        # Mongoose schemas
+│   ├── stripe/         # Stripe payment integration
+│   ├── subscription/   # Subscription management
+│   ├── transaction/    # Transaction logic
+│   └── user/           # User management
+├── test/               # Test files
+├── .env                # Environment variables
+├── package.json        # Project metadata and scripts
+├── tsconfig.json       # TypeScript configuration
+└── README.md           # Project documentation
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+---
+
+## 🤝 Contributing
+
+Feel free to fork, collaborate, open issues, or submit pull requests! Contributions and edits are welcome to make this project even better.
+
+---
 
 ## License
+MIT
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+---
