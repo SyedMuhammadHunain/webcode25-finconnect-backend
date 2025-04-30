@@ -111,7 +111,7 @@ backend/
 └── README.md           # Project documentation
 
 Contributors
-Shahzaim – Full-Stack Developer: [GitHub Profile](https://github.com/Shahzaim84/webkode-backend.git)
+Shahzaim – Full-Stack Developer: https://github.com/Shahzaim84/webkode-backend.git
 
 
 License
