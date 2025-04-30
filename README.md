@@ -109,10 +109,13 @@ backend/
 ├── package.json        # Project metadata and scripts
 ├── tsconfig.json       # TypeScript configuration
 └── README.md           # Project documentation
+---
 
-Contributors
-Shahzaim – Full-Stack Developer: https://github.com/Shahzaim84/webkode-backend.git
+## 👥 Contributors
+- **Shahzaim** – Full-Stack Developer: [GitHub Repository](https://github.com/Shahzaim84/webkode-backend)
+- **Syed Muhammad Hunain** – Backend Developer: [GitHub Profile](https://github.com/SyedMuhammadHunain)
 
+---
 
-License
-MetaStacker Team – WebCode25 Challenge.
+## 📄 License
+Maintained by the **MetaStacker Team** – WebCode25 Challenge 2024.
