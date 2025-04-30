@@ -111,7 +111,7 @@ backend/
 ├── .env                # Environment variables
 ├── package.json        # Project metadata and scripts
 ├── tsconfig.json       # TypeScript configuration
-└── README.md           # Project documentation
+└── README.md          # Project documentation
 ```
 
 ---
@@ -127,4 +127,4 @@ Feel free to fork, collaborate, open issues, or submit pull requests! Contributi
 ---
 
 ## 📄 License
-© MetaStacker Team
+© MetaStacker Team – WebCode25 Challenge 2024
