@@ -110,16 +110,16 @@ backend/
 ├── tsconfig.json       # TypeScript configuration
 └── README.md           # Project documentation
 ```
-
 ---
-
-## 🤝 Contributing
-
+🤝 Contributing
 Feel free to fork, collaborate, open issues, or submit pull requests! Contributions and edits are welcome to make this project even better.
 
+👥 Contributors
+Shahzaim: Full-Stack Developer - https://github.com/Shahzaim84/webkode-backend
 ---
 
-## License
-MIT
-
+---
+## 📄 License
+MetaStacker Team !!
+##
 ---
