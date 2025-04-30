@@ -109,9 +109,9 @@ backend/
 ├── package.json        # Project metadata and scripts
 ├── tsconfig.json       # TypeScript configuration
 └── README.md           # Project documentation
-`` Contributors
-Shahzaim – Full-Stack Developer: GitHub
+ntributors
+Shahzaim – Full-Stack Developer: GitHub Profile
 
 
 📄 License
-Maintained by the MetaStacker Team.
+MetaStacker Team – WebCode25 Challenge.
