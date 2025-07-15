@@ -1,6 +1,12 @@
 # 🚀 FinConnect - Full-Stack Application
 
-Welcome to **FinConnect**! This project is a full-stack sandbox portal where developers can register, subscribe to a plan, and access a suite of mock financial APIs. The system is secured with JWT and RBAC, and is designed for extensibility, clean code, and a modern developer experience. Note that this Repo only contains the backend of my work.
+# FinConnect
+
+Welcome to **FinConnect**! This project is a full-stack sandbox portal where developers can register, subscribe to a plan, and access a suite of mock financial APIs. The system is secured with **JWT (JSON Web Tokens)** and **RBAC (Role-Based Access Control)**, ensuring security.
+> **Note:** This repository contains only the backend implementation of the project.  
+
+For a detailed walkthrough of the project, check out the following link:  
+[Project Overview and Demo](https://drive.google.com/file/d/1Tl_WjJkhi0-XcoiCiaGTyGynplDnwq0n/view?usp=drive_link)
 
 ---
 
