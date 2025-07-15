@@ -1,6 +1,6 @@
 # 🚀 FinConnect - Full-Stack Application
 
-Welcome to **FinConnect**! This project is a full-stack sandbox portal where developers can register, subscribe to a plan, and access a suite of mock financial APIs. The system is secured with JWT and RBAC, and is designed for extensibility, clean code, and a modern developer experience. Note that this Repo only contains the backend for the full-stack app Visit here:
+Welcome to **FinConnect**! This project is a full-stack sandbox portal where developers can register, subscribe to a plan, and access a suite of mock financial APIs. The system is secured with JWT and RBAC, and is designed for extensibility, clean code, and a modern developer experience. Note that this Repo only contains the backend of my work.
 
 ---
 
@@ -121,8 +121,9 @@ Feel free to fork, collaborate, open issues, or submit pull requests! Contributi
 
 ---
 
+---
+
 ## 👥 Contributors
-Watch the Demo here
 - Shahzaim: Full-Stack Developer - [GitHub Profile](https://github.com/Shahzaim84/webkode-backend)
 
 ---
