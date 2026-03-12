@@ -55,11 +55,7 @@ Built with the **NestJS** framework and powered by **MongoDB**, it provides modu
 Watch the full project overview and demo to see FinConnect in action.
 
 <div align="center">
-  <a href="https://drive.google.com/file/d/1Tl_WjJkhi0-XcoiCiaGTyGynplDnwq0n/view?usp=drive_link" target="_blank">
-    <img src="https://img.shields.io/badge/Watch_Project_Demo-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch Demo">
-  </a>
-  <br/>
-  <p><i>Note: Click the button above to view the demo video hosted on Google Drive.</i></p>
+https://github.com/user-attachments/assets/88105980-efda-4d14-81ac-92e934498b46
 </div>
 
 <br/>
@@ -290,30 +286,8 @@ backend/
 
 <p>Feel free to fork, collaborate, open issues, or submit pull requests! Contributions and edits are welcome to make this project even better.</p>
 
-<a href="https://github.com/SyedMuhammadHunain/webcode25-finconnect-backend/stargazers">
-  <img src="https://img.shields.io/github/stars/SyedMuhammadHunain/webcode25-finconnect-backend?style=for-the-badge&color=yellow&logo=star&label=Star%20Us" alt="GitHub Stars">
-</a>
-<a href="https://github.com/SyedMuhammadHunain/webcode25-finconnect-backend/fork">
-  <img src="https://img.shields.io/github/forks/SyedMuhammadHunain/webcode25-finconnect-backend?style=for-the-badge&color=orange&logo=git&label=Fork" alt="GitHub Forks">
-</a>
-
-<br/>
-<br/>
-
-### 👥 Contributors
-
-<a href="https://github.com/Shahzaim">
-  <img src="https://img.shields.io/badge/Shahzaim-Full_Stack_Developer-black?style=for-the-badge&logo=github" alt="Shahzaim">
-</a>
-<a href="https://github.com/SyedMuhammadHunain">
-  <img src="https://img.shields.io/badge/Syed_Muhammad_Hunain-Full_Stack_Developer-black?style=for-the-badge&logo=github" alt="Syed Muhammad Hunain">
-</a>
-
-<br/>
 <br/>
 
 <p>Copyright © 2025 <b>MetaStacker Team – WebCode25 Challenge</b>.</p>
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=80&section=footer"/>
 
 </div>
