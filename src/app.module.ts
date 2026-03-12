@@ -35,6 +35,13 @@ import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
     MongooseModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({
         uri: configService.get<string>('DATABASE_URL'),
+        // Optimized Connection Pooling Settings:
+        maxPoolSize: 20, // Cap at 20 active connections to prevent DB exhaustion
+        minPoolSize: 2, // Start with 2 and scale up when necessary to save resources
+        maxIdleTimeMS: 30000, // Drop connections that are idle for more than 30 seconds
+        serverSelectionTimeoutMS: 5000, // Timeout after 5s if DB is unresponsive
+        socketTimeoutMS: 45000, // Close sockets after 45s of network inactivity
+        waitQueueTimeoutMS: 10000, // Fail fast if requests wait >10s in queue for an available connection
       }),
       inject: [ConfigService],
     }),
