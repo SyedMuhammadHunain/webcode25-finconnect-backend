@@ -1,5 +1,4 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { authenticator } from 'otplib';
 import { MailerService } from '@nestjs-modules/mailer';
 import { Auth } from 'src/schemas/auth.schema';
 import { InjectModel } from '@nestjs/mongoose';

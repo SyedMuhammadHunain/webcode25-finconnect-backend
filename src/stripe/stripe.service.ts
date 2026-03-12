@@ -23,7 +23,7 @@ export class StripeService {
     }
 
     this.stripe = new Stripe(stripeSecretKey, {
-      apiVersion: '2025-03-31.basil', // Use a valid API version
+      apiVersion: '2026-02-25.clover', // Use a valid API version
     });
   }
 

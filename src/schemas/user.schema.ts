@@ -4,7 +4,6 @@ import { Role } from 'src/common/enums/roles.enum';
 import { SubscriptionType } from 'src/common/enums/subscriptionType.enum';
 
 export interface User {
-  _id: string;
   username: string;
   password: string;
   email: string;
@@ -56,10 +55,10 @@ export class User {
   @Prop({ type: Date, default: null })
   subscriptionExpiry?: Date | null;
 
-  @Prop({ type: String, default: null }) 
+  @Prop({ type: String, default: null })
   stripeCustomerId?: string;
 
-  @Prop({ type: String, default: null }) 
+  @Prop({ type: String, default: null })
   stripeSubscriptionId?: string;
 
   @Prop({ type: String, default: null })
@@ -77,7 +76,7 @@ export class User {
   @Prop({ default: Date.now() })
   createdAt: Date;
 
-  @Prop({ required: true, default: 1000, type: Number, min: 0 }) 
+  @Prop({ required: true, default: 1000, type: Number, min: 0 })
   balance: number;
 }
 

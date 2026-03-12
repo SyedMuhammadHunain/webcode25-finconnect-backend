@@ -7,11 +7,11 @@ import { JwtModule } from '@nestjs/jwt';
     ConfigModule.forRoot(),
     JwtModule.register({
       secret: process.env.JWT_SECRET,
-     signOptions: {
-        expiresIn: process.env.JWT_EXPIRES_IN,
+      signOptions: {
+        expiresIn: process.env.JWT_EXPIRES_IN as string | undefined as number | undefined,
       },
     }),
   ],
   exports: [JwtModule],
 })
-export class JwtConfig {}
+export class JwtConfig { }

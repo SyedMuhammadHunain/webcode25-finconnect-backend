@@ -27,7 +27,7 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
     private readonly emailService: EmailService,
-  ) {}
+  ) { }
 
   async login(loginDto: LoginDto): Promise<{ accessToken: string }> {
     const { email, password } = loginDto;
@@ -79,14 +79,14 @@ export class AuthService {
 
   async generateToken(user: UserDocument): Promise<string> {
     const payload = {
-      sub: (user._id as string).toString(),
+      sub: String(user._id),
       role: user.role,
       isVerified: user.isVerified,
     };
 
     return this.jwtService.sign(payload, {
       secret: process.env.JWT_SECRET,
-      expiresIn: process.env.JWT_EXPIRES_IN,
+      expiresIn: process.env.JWT_EXPIRES_IN as string | undefined as number | undefined,
     });
   }
 
