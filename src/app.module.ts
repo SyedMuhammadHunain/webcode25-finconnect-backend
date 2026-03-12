@@ -14,11 +14,17 @@ import { FintechModule } from './fintech/fintech.module';
 import { TransactionModule } from './transaction/transaction.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+    }),
+    CacheModule.register({
+      isGlobal: true, // Make cache available module-wide
+      ttl: 60000, // Default 60 seconds of cache time
+      max: 100, // Maximum number of items in the cache
     }),
     ThrottlerModule.forRoot([
       {
