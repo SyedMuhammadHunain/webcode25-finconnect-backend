@@ -13,18 +13,18 @@ import { SubscriptionType } from 'src/common/enums/subscriptionType.enum';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
+  constructor(@InjectModel('User') private readonly userModel: Model<User>) { }
 
   async createUser(signUpDto: SignUpDto): Promise<User> {
     const { username, email, password, image } = signUpDto;
 
     try {
       // Check if the user already exists
-      const existingUser = await this.userModel.findOne({ email }).exec();
+      const existingUser = await this.userModel.findOne({ email }).lean().exec();
       if (existingUser) {
         throw new ConflictException(
           'User with this email already exists',
-        ); 
+        );
       }
 
       // Hash the password
@@ -44,7 +44,7 @@ export class UserService {
         subscriptionType: SubscriptionType.BASIC,
         subscriptionExpiry: null,
       });
-      
+
 
       // Save the user to the database
       return await user.save();

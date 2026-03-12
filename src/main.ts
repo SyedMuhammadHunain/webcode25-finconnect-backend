@@ -5,9 +5,11 @@ import { User } from 'src/schemas/user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import * as bcrypt from 'bcrypt';
 import { Model } from 'mongoose';
+import * as compression from 'compression';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.use(compression());
   app.useGlobalPipes(new ValidationPipe());
 
   // Test Accounts
@@ -17,21 +19,28 @@ async function bootstrap() {
     {
       username: 'TestUser_1',
       email: 'test.user.account1@example.com',
-      password: await bcrypt.hash('TestUser-1', 10), // Hash the password
+      rawPassword: 'TestUser-1', // Store raw password temporarily
       balance: 1000,
     },
     {
       username: 'TestUser_2',
       email: 'test.user.account2@example.com',
-      password: await bcrypt.hash('TestUser-2', 10),
+      rawPassword: 'TestUser-2',
       balance: 500,
     },
   ];
 
   for (const user of seedUsers) {
-    const existingUser = await userModel.findOne({ email: user.email });
+    const existingUser = await userModel.findOne({ email: user.email }).lean();
     if (!existingUser) {
-      await userModel.create(user);
+      // Only hash password if user doesn't exist
+      const hashedPassword = await bcrypt.hash(user.rawPassword, 10);
+      await userModel.create({
+        username: user.username,
+        email: user.email,
+        password: hashedPassword,
+        balance: user.balance,
+      });
     }
   }
 

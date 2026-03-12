@@ -31,7 +31,7 @@ export class AuthService {
 
   async login(loginDto: LoginDto): Promise<{ accessToken: string }> {
     const { email, password } = loginDto;
-    const foundUser = await this.userModel.findOne({ email }).exec();
+    const foundUser = await this.userModel.findOne({ email }).lean().exec();
 
     if (!foundUser) {
       throw new UnauthorizedException(
@@ -117,7 +117,7 @@ export class AuthService {
     const { email } = forgotPasswordDto;
 
     // Find the user with the email
-    const user = await this.userModel.findOne({ email });
+    const user = await this.userModel.findOne({ email }).lean().exec();
     if (!user) {
       throw new NotFoundException(
         'Account not found: No user registered with this email',
@@ -159,7 +159,7 @@ export class AuthService {
     // Find the user with the provided token
     const user = await this.userModel.findOne({
       _id: userId,
-    });
+    }).lean().exec();
 
     if (!user) {
       throw new NotFoundException('Unable to find user');

@@ -55,7 +55,7 @@ export class StripeService {
   }
   async isSubscribed(userId: string): Promise<boolean> {
     try {
-      const user = await this.userModel.findById(userId);
+      const user = await this.userModel.findById(userId).lean().exec();
       if (!user) {
         this.logger.warn(`User not found: ${userId}`);
         return false;

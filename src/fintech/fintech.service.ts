@@ -17,10 +17,10 @@ export class FintechService {
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     @InjectModel(Transaction.name)
     private transactionModel: Model<TransactionDocument>,
-  ) {}
+  ) { }
 
   async getBalance(userId: string): Promise<{ balance: number }> {
-    const user = await this.userModel.findById(userId);
+    const user = await this.userModel.findById(userId).lean().exec();
     if (!user) {
       throw new NotFoundException('User not found');
     }
@@ -75,7 +75,9 @@ export class FintechService {
       })
       .skip((page - 1) * pageSize)
       .limit(pageSize)
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .lean()
+      .exec();
 
     return transactions;
   }
@@ -84,7 +86,7 @@ export class FintechService {
     const transactions = await this.transactionModel.find({
       $or: [{ sourceAccountId: userId }, { destinationAccountId: userId }],
       createdAt: { $gte: start, $lte: end },
-    });
+    }).lean().exec();
 
     const totalAmount = transactions.reduce(
       (sum, transaction) => sum + transaction.amount,

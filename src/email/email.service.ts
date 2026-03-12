@@ -233,7 +233,7 @@ export class EmailService {
   async isValidOtp(loginDto: LoginDto) {
     const { email, code } = loginDto;
 
-    const found = await this.authCollections.findOne({ email }).exec();
+    const found = await this.authCollections.findOne({ email }).lean().exec();
     if (!found) {
       throw new UnauthorizedException('Cannot find OTP code for this email');
     }
