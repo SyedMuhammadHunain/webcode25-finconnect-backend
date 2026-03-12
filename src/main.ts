@@ -7,9 +7,16 @@ import * as bcrypt from 'bcrypt';
 import { Model } from 'mongoose';
 import * as compression from 'compression';
 import { json, urlencoded } from 'express';
+import helmet from 'helmet';
+import mongoSanitize from 'express-mongo-sanitize';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // Security Measures
+  app.use(helmet()); // Secure HTTP headers
+  app.enableCors(); // Protect against cross-origin abuse
+  app.use(mongoSanitize()); // Prevent NoSQL injection attacks by sanitizing payload characters
 
   // Enforce reasonable payload size limits
   app.use(json({ limit: '1mb' }));
