@@ -12,15 +12,15 @@ import { ConfigModule } from '@nestjs/config';
         port: 587,
         secure: false,
         auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.APP_PASSWORD,
+          user: process.env.MAIL_USER,
+          pass: process.env.MAIL_PASS,
         },
       },
       defaults: {
-        from: `"SandBoxPortal" <${process.env.EMAIL_USER}>`,
+        from: `"SandBoxPortal" <${process.env.MAIL_USER}>`,
       },
     }),
   ],
   exports: [MailerModule],
 })
-export class MailerConfig {}
+export class MailerConfig { }

@@ -13,11 +13,25 @@ import { SubscriptionGuard } from './common/guards/subscription.guard';
 import { FintechModule } from './fintech/fintech.module';
 import { TransactionModule } from './transaction/transaction.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    ThrottlerModule.forRoot([
+      {
+        name: 'short',
+        ttl: 1000,
+        limit: 10,
+      },
+      {
+        name: 'medium',
+        ttl: 60000,
+        limit: 100,
+      },
+    ]),
     MongooseModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({
         uri: configService.get<string>('DATABASE_URL'),
@@ -38,6 +52,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     AppService,
     {
       provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+    {
+      provide: APP_GUARD,
       useClass: AuthGuard,
     },
     {
@@ -46,4 +64,4 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     },
   ],
 })
-export class AppModule {}
+export class AppModule { }
