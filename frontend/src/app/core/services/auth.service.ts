@@ -3,37 +3,39 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { handleError } from '../../shared/error-handling.shared';
+import { RegisterData, LoginData, ForgotPasswordData, ResendOtpData, UpdatePasswordData, AuthResponse } from '../../models/auth.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-    private apiUrl = 'http://localhost:3000/api/auth';
+    private apiUrl = `${environment.apiUrl}/auth`;
 
     constructor(private http: HttpClient) { }
 
-    register(data: any): Observable<{ message: string }> {
-        return this.http.post<{ message: string }>(`${this.apiUrl}/register`, data)
+    register(data: RegisterData): Observable<AuthResponse> {
+        return this.http.post<AuthResponse>(`${this.apiUrl}/register`, data)
             .pipe(catchError(handleError));
     }
 
-    login(data: any): Observable<{ accessToken: string }> {
-        return this.http.post<{ accessToken: string }>(`${this.apiUrl}/login`, data)
+    login(data: LoginData): Observable<AuthResponse> {
+        return this.http.post<AuthResponse>(`${this.apiUrl}/login`, data)
             .pipe(catchError(handleError));
     }
 
-    forgotPassword(data: any): Observable<{ passwordResetToken: string; passwordResetTokenExpiresAt: Date }> {
-        return this.http.post<{ passwordResetToken: string; passwordResetTokenExpiresAt: Date }>(`${this.apiUrl}/forgot-password`, data)
+    forgotPassword(data: ForgotPasswordData): Observable<AuthResponse> {
+        return this.http.post<AuthResponse>(`${this.apiUrl}/forgot-password`, data)
             .pipe(catchError(handleError));
     }
 
-    resendOtp(data: any): Observable<any> {
-        return this.http.post(`${this.apiUrl}/resend-otp`, data)
+    resendOtp(data: ResendOtpData): Observable<AuthResponse> {
+        return this.http.post<AuthResponse>(`${this.apiUrl}/resend-otp`, data)
             .pipe(catchError(handleError));
     }
 
-    updatePassword(data: any): Observable<any> {
-        return this.http.patch(`${this.apiUrl}/update-password`, data)
+    updatePassword(data: UpdatePasswordData): Observable<AuthResponse> {
+        return this.http.patch<AuthResponse>(`${this.apiUrl}/update-password`, data)
             .pipe(catchError(handleError));
     }
 }

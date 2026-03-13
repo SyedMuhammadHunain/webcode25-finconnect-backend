@@ -3,22 +3,24 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { handleError } from '../../shared/error-handling.shared';
+import { SubscriptionResponse, SubscriptionData } from '../../models/subscription.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class SubscriptionService {
-    private apiUrl = 'http://localhost:3000/api/subscriptions';
+    private apiUrl = `${environment.apiUrl}/subscriptions`;
 
     constructor(private http: HttpClient) { }
 
-    subscribe(subscriptionType: string, amount: number): Observable<{ message: string }> {
-        return this.http.post<{ message: string }>(`${this.apiUrl}/subscribe`, { subscriptionType, amount })
+    subscribe(data: SubscriptionData): Observable<SubscriptionResponse> {
+        return this.http.post<SubscriptionResponse>(`${this.apiUrl}/subscribe`, data)
             .pipe(catchError(handleError));
     }
 
-    cancel(): Observable<{ message: string }> {
-        return this.http.post<{ message: string }>(`${this.apiUrl}/cancel`, {})
+    cancel(): Observable<SubscriptionResponse> {
+        return this.http.post<SubscriptionResponse>(`${this.apiUrl}/cancel`, {})
             .pipe(catchError(handleError));
     }
 }
