@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 const compression = require("compression");
 const express_1 = require("express");
 const helmet_1 = require("helmet");
-const express_mongo_sanitize_1 = require("express-mongo-sanitize");
+const mongoSanitize = require("express-mongo-sanitize");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.use((0, helmet_1.default)());
@@ -15,7 +15,7 @@ async function bootstrap() {
         origin: 'http://localhost:4200',
         credentials: true,
     });
-    app.use((0, express_mongo_sanitize_1.default)());
+    app.use(mongoSanitize());
     app.use((0, express_1.json)({ limit: '1mb' }));
     app.use((0, express_1.urlencoded)({ extended: true, limit: '1mb' }));
     app.use(compression());

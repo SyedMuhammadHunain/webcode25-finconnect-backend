@@ -8,7 +8,7 @@ import { Model } from 'mongoose';
 import * as compression from 'compression';
 import { json, urlencoded } from 'express';
 import helmet from 'helmet';
-import mongoSanitize from 'express-mongo-sanitize';
+import * as mongoSanitize from 'express-mongo-sanitize';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
