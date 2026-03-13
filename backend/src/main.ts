@@ -15,7 +15,10 @@ async function bootstrap() {
 
   // Security Measures
   app.use(helmet()); // Secure HTTP headers
-  app.enableCors(); // Protect against cross-origin abuse
+  app.enableCors({
+    origin: 'http://localhost:4200',
+    credentials: true,
+  }); // Protect against cross-origin abuse
   app.use(mongoSanitize()); // Prevent NoSQL injection attacks by sanitizing payload characters
 
   // Enforce reasonable payload size limits
