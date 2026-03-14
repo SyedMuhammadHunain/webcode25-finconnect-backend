@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { handleError } from '../../shared/error-handling.shared';
-import { SubscriptionResponse, SubscriptionData } from '../../models/subscription.model';
+import { SubscriptionResponse, SubscriptionData } from '../models/subscription.model';
 import { environment } from '../../../environments/environment';
 
 @Injectable({

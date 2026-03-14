@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { handleError } from '../../shared/error-handling.shared';
-import { TransferFundsData, FintechResponse } from '../../models/fintech.model';
+import { TransferFundsData, FintechResponse } from '../models/fintech.model';
 import { environment } from '../../../environments/environment';
 
 @Injectable({

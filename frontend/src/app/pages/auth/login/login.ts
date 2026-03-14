@@ -47,13 +47,8 @@ export class Login implements OnInit, OnDestroy {
     this.authService.login(this.loginForm.value)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (response) => {
+        next: () => {
           this.isLoading.set(false);
-          // Assuming user authentication involves storing a token
-          if (response.accessToken) {
-            localStorage.setItem('accessToken', response.accessToken);
-          }
-          // After success, navigate to dashboard/home page
           this.router.navigate(['/']);
         },
         error: (err) => {

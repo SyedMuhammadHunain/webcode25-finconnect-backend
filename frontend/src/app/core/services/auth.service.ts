@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { handleError } from '../../shared/error-handling.shared';
-import { RegisterData, LoginData, ForgotPasswordData, ResendOtpData, UpdatePasswordData, AuthResponse } from '../../models/auth.model';
+import { RegisterData, LoginData, ForgotPasswordData, ResendOtpData, UpdatePasswordData, AuthResponse } from '../models/auth.model';
 import { environment } from '../../../environments/environment';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +13,10 @@ import { environment } from '../../../environments/environment';
 export class AuthService {
     private apiUrl = `${environment.apiUrl}/auth`;
 
-    constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient,
+        private localStorageService: LocalStorageService
+    ) { }
 
     register(data: RegisterData): Observable<AuthResponse> {
         return this.http.post<AuthResponse>(`${this.apiUrl}/register`, data)
@@ -21,7 +25,14 @@ export class AuthService {
 
     login(data: LoginData): Observable<AuthResponse> {
         return this.http.post<AuthResponse>(`${this.apiUrl}/login`, data)
-            .pipe(catchError(handleError));
+            .pipe(
+                tap(response => {
+                    if (response.accessToken) {
+                        this.localStorageService.setItem('accessToken', response.accessToken);
+                    }
+                }),
+                catchError(handleError)
+            );
     }
 
     forgotPassword(data: ForgotPasswordData): Observable<AuthResponse> {
