@@ -5,11 +5,27 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from '../../../core/services/auth.service';
 import { AuthResponse } from '../../../core/models/auth.model';
+import { RouterLink } from '@angular/router';
+
+import { CardModule } from 'primeng/card';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { MessageModule } from 'primeng/message';
+import { FloatLabel } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-resend-otp',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterLink,
+    CardModule,
+    InputTextModule,
+    ButtonModule,
+    MessageModule,
+    FloatLabel
+  ],
   templateUrl: './resend-otp.html',
   styleUrl: './resend-otp.css',
 })

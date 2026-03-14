@@ -1,1 +1,55 @@
-<p>login works!</p>
+<p-card header="Welcome Back">
+    <ng-template #subtitle>
+        Sign in to your account
+    </ng-template>
+
+    <p-message *ngIf="errorMessage()" severity="error" [text]="errorMessage()"></p-message>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div>
+            <p-floatlabel>
+                <input pInputText id="email" formControlName="email" type="email" />
+                <label for="email">Email</label>
+            </p-floatlabel>
+            <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                <small *ngIf="loginForm.get('email')?.hasError('required')">Email is required.</small>
+                <small *ngIf="loginForm.get('email')?.hasError('email')">Invalid email format.</small>
+            </div>
+        </div>
+
+        <div>
+            <p-floatlabel>
+                <p-password id="password" formControlName="password" [feedback]="false"
+                    [toggleMask]="true"></p-password>
+                <label for="password">Password</label>
+            </p-floatlabel>
+            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                <small *ngIf="loginForm.get('password')?.hasError('required')">Password is required.</small>
+            </div>
+        </div>
+
+        <div>
+            <p-floatlabel>
+                <input pInputText id="code" formControlName="code" type="text" />
+                <label for="code">OTP Code</label>
+            </p-floatlabel>
+            <div *ngIf="loginForm.get('code')?.invalid && loginForm.get('code')?.touched">
+                <small *ngIf="loginForm.get('code')?.hasError('required')">OTP Code is required.</small>
+            </div>
+        </div>
+
+        <div>
+            <p-button type="submit" [loading]="isLoading()" label="Sign In" icon="pi pi-sign-in"
+                [disabled]="loginForm.invalid || isLoading()"></p-button>
+        </div>
+    </form>
+
+    <ng-template #footer>
+        <div>
+            <a routerLink="/signup">Don't have an account? Sign up</a>
+        </div>
+        <div>
+            <a routerLink="/forgot-password">Forgot password?</a>
+        </div>
+    </ng-template>
+</p-card>
