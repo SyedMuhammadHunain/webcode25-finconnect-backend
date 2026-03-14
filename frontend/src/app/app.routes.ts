@@ -10,6 +10,14 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/auth/login/login').then(m => m.Login)
     },
     {
+        path: 'forgot-password',
+        loadComponent: () => import('./pages/auth/forgot-password/forgot-password').then(m => m.ForgotPassword)
+    },
+    {
+        path: 'resend-otp',
+        loadComponent: () => import('./pages/auth/resend-otp/resend-otp').then(m => m.ResendOtp)
+    },
+    {
         path: '',
         redirectTo: 'login',
         pathMatch: 'full'
