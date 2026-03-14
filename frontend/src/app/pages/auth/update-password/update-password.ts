@@ -1,24 +1,26 @@
 import { Component, inject, signal, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from '../../../core/services/auth.service';
 import { AuthResponse } from '../../../core/models/auth.model';
 
 @Component({
-  selector: 'app-forgot-password',
+  selector: 'app-update-password',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './forgot-password.html',
-  styleUrl: './forgot-password.css',
+  templateUrl: './update-password.html',
+  styleUrl: './update-password.css',
 })
-export class ForgotPassword implements OnInit, OnDestroy {
+export class UpdatePassword implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
+  private router = inject(Router);
   private destroy$ = new Subject<void>();
 
-  forgotPasswordForm!: FormGroup;
+  updatePasswordForm!: FormGroup;
 
   // Signals for robust state management
   isLoading = signal<boolean>(false);
@@ -26,15 +28,15 @@ export class ForgotPassword implements OnInit, OnDestroy {
   successMessage = signal<string | null>(null);
 
   ngOnInit(): void {
-    // Initialize standard reactive form with appropriate validations
-    this.forgotPasswordForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]]
+    // Initialize standard reactive form ensuring newPassword meets basic requirements
+    this.updatePasswordForm = this.fb.group({
+      newPassword: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   onSubmit(): void {
-    if (this.forgotPasswordForm.invalid) {
-      this.forgotPasswordForm.markAllAsTouched();
+    if (this.updatePasswordForm.invalid) {
+      this.updatePasswordForm.markAllAsTouched();
       return;
     }
 
@@ -43,23 +45,29 @@ export class ForgotPassword implements OnInit, OnDestroy {
     this.successMessage.set(null);
 
     // Communicate with auth service using proper unsubscription via RxJS takeUntil
-    this.authService.forgotPassword(this.forgotPasswordForm.value)
+    // NOTE: The auth.interceptor.ts automatically attaches the Authorization: Bearer Header behind the scenes!
+    this.authService.updatePassword(this.updatePasswordForm.value)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response: AuthResponse) => {
           this.isLoading.set(false);
-          this.successMessage.set(response.message || 'Password reset link sent to your email.');
-          this.forgotPasswordForm.reset();
+          this.successMessage.set(response.message || 'Password updated successfully!');
+          this.updatePasswordForm.reset();
+
+          // Optionally redirect after a slight delay, or require them to re-login based on your security policies
+          setTimeout(() => {
+            this.router.navigate(['/']);
+          }, 2000);
         },
         error: (err: Error) => {
           this.isLoading.set(false);
-          this.errorMessage.set(err.message || 'Failed to send password reset link. Please try again.');
+          this.errorMessage.set(err.message || 'Failed to update password. Please try again.');
         }
       });
   }
 
   ngOnDestroy(): void {
-    // Notify all subscriptions to unsubscribe
+    // Notify all subscriptions to unsubscribe to prevent memory leaks
     this.destroy$.next();
     this.destroy$.complete();
   }

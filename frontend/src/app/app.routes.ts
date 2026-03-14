@@ -18,6 +18,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/auth/resend-otp/resend-otp').then(m => m.ResendOtp)
     },
     {
+        path: 'update-password',
+        loadComponent: () => import('./pages/auth/update-password/update-password').then(m => m.UpdatePassword)
+    },
+    {
         path: '',
         redirectTo: 'login',
         pathMatch: 'full'

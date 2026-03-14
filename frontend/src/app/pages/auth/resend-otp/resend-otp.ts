@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from '../../../core/services/auth.service';
+import { AuthResponse } from '../../../core/models/auth.model';
 
 @Component({
   selector: 'app-resend-otp',
@@ -45,12 +46,12 @@ export class ResendOtp implements OnInit, OnDestroy {
     this.authService.resendOtp(this.resendOtpForm.value)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (response: any) => {
+        next: (response: AuthResponse) => {
           this.isLoading.set(false);
           this.successMessage.set(response.message || 'OTP resent successfully to your email.');
           this.resendOtpForm.reset();
         },
-        error: (err: any) => {
+        error: (err: Error) => {
           this.isLoading.set(false);
           this.errorMessage.set(err.message || 'Failed to resend OTP. Please try again.');
         }

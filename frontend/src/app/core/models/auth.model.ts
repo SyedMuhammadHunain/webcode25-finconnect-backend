@@ -28,4 +28,5 @@ export interface AuthResponse {
     accessToken?: string;
     passwordResetToken?: string;
     passwordResetTokenExpiresAt?: Date;
+    passwordResetLink?: string;
 }
