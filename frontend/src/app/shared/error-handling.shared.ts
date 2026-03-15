@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 
+//for services
 export function handleError(error: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
     if (error.error instanceof ErrorEvent) {

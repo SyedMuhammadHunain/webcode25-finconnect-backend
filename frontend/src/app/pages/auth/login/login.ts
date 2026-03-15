@@ -68,7 +68,7 @@ export class Login implements OnInit, OnDestroy {
       .subscribe({
         next: () => {
           this.isLoading.set(false);
-          this.router.navigate(['/']);
+          this.router.navigate(['/subscription']);
         },
         error: (err) => {
           this.isLoading.set(false);

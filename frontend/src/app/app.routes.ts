@@ -22,6 +22,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/auth/update-password/update-password').then(m => m.UpdatePassword)
     },
     {
+        path: 'subscription',
+        loadComponent: () => import('./pages/subscription/subscription').then(m => m.Subscription)
+    },
+    {
         path: '',
         redirectTo: 'login',
         pathMatch: 'full'

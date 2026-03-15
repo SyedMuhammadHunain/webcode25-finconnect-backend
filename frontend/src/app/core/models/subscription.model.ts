@@ -1,5 +1,11 @@
+export enum SubscriptionType {
+    BASIC = 'basic',
+    STANDARD = 'standard',
+    PREMIUM = 'premium',
+}
+
 export interface SubscriptionData {
-    subscriptionType: string;
+    subscriptionType: SubscriptionType;
     amount: number;
 }
 
