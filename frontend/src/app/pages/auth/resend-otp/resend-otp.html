@@ -3,8 +3,8 @@
         Didn't receive the code? We'll send it again.
     </ng-template>
 
-    <p-message *ngIf="errorMessage()" severity="error" [text]="errorMessage()"></p-message>
-    <p-message *ngIf="successMessage()" severity="success" [text]="successMessage()"></p-message>
+    <p-message *ngIf="errorMessage()" severity="error" [text]="errorMessage() || ''"></p-message>
+    <p-message *ngIf="successMessage()" severity="success" [text]="successMessage() || ''"></p-message>
 
     <form [formGroup]="resendOtpForm" (ngSubmit)="onSubmit()">
         <div>

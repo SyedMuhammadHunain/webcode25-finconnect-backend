@@ -3,8 +3,8 @@
         Sign up to get started
     </ng-template>
 
-    <p-message *ngIf="errorMessage()" severity="error" [text]="errorMessage()"></p-message>
-    <p-message *ngIf="successMessage()" severity="success" [text]="successMessage()"></p-message>
+    <p-message *ngIf="errorMessage()" severity="error" [text]="errorMessage() || ''"></p-message>
+    <p-message *ngIf="successMessage()" severity="success" [text]="successMessage() || ''"></p-message>
 
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <div>
