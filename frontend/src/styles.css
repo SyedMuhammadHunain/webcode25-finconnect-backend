@@ -1,1 +1,276 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    /* --- Color Palette --- */
+    --color-bg: #0b1a12;
+    /* Deep Matrix */
+    --color-bg-surface: #112018;
+    /* Slightly lighter surface */
+    --color-bg-card: #162a1e;
+    /* Card background */
+    --color-bg-elevated: #1c3327;
+    /* Elevated elements */
+    --color-border: #2a4a37;
+    /* Subtle borders */
+
+    --color-primary: #b4ff00;
+    /* Acid Lime */
+    --color-primary-dim: #8acc00;
+    /* Dimmed Acid Lime */
+    --color-primary-glow: rgba(180, 255, 0, 0.15);
+    /* Glow effect */
+
+    --color-text: #e8f5f0;
+    /* Primary text */
+    --color-text-muted: #7aad8e;
+    /* Muted/secondary text */
+    --color-text-faint: #4a7a5a;
+    /* Very faint text */
+    --color-text-on-primary: #0b1a12;
+    /* Text on Acid Lime bg */
+
+    --color-error: #ff4d4d;
+    --color-success: #b4ff00;
+    --color-warning: #ffcc00;
+    --color-info: #4dbbff;
+
+    /* --- Spacing Scale --- */
+    --space-1: 0.25rem;
+    /*  4px */
+    --space-2: 0.5rem;
+    /*  8px */
+    --space-3: 0.75rem;
+    /* 12px */
+    --space-4: 1rem;
+    /* 16px */
+    --space-5: 1.25rem;
+    /* 20px */
+    --space-6: 1.5rem;
+    /* 24px */
+    --space-8: 2rem;
+    /* 32px */
+    --space-10: 2.5rem;
+    /* 40px */
+    --space-12: 3rem;
+    /* 48px */
+    --space-16: 4rem;
+    /* 64px */
+    --space-20: 5rem;
+    /* 80px */
+    --space-24: 6rem;
+    /* 96px */
+
+    /* --- Font Sizes --- */
+    --text-xs: 0.75rem;
+    /* 12px */
+    --text-sm: 0.875rem;
+    /* 14px */
+    --text-base: 1rem;
+    /* 16px */
+    --text-lg: 1.125rem;
+    /* 18px */
+    --text-xl: 1.25rem;
+    /* 20px */
+    --text-2xl: 1.5rem;
+    /* 24px */
+    --text-3xl: 1.875rem;
+    /* 30px */
+    --text-4xl: 2.25rem;
+    /* 36px */
+    --text-5xl: 3rem;
+    /* 48px */
+    --text-6xl: 3.75rem;
+    /* 60px */
+
+    /* --- Font Weights --- */
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+    --font-extrabold: 800;
+
+    /* --- Line Heights --- */
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.6;
+    --leading-relaxed: 1.75;
+    --leading-loose: 2;
+
+    /* --- Letter Spacing --- */
+    --tracking-tight: -0.025em;
+    --tracking-normal: 0em;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+    --tracking-widest: 0.1em;
+
+    /* --- Border Radius ---
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
+    --radius-full: 9999px;
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+    --shadow-glow: 0 0 20px rgba(180, 255, 0, 0.25);
+
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+    --transition-slow: 400ms ease; */
+
+    /* --- Container Widths --- */
+    --container-sm: 640px;
+    --container-md: 768px;
+    --container-lg: 1024px;
+    --container-xl: 1280px;
+    --container-2xl: 1536px;
+
+    /* --- Z-Index Scale ---
+    --z-base: 0;
+    --z-raised: 10;
+    --z-overlay: 100;
+    --z-modal: 1000;
+    --z-toast: 9999; */
+}
+
+/* ============================================
+   GLOBAL RESET & BASE STYLES
+   ============================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+    font-size: var(--text-base);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-normal);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--color-primary);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    margin-bottom: var(--space-4);
+}
+
+h1 {
+    font-size: var(--text-5xl);
+    font-weight: var(--font-extrabold);
+    line-height: 1.1;
+    margin-bottom: var(--space-6);
+}
+
+h2 {
+    font-size: var(--text-4xl);
+    line-height: 1.2;
+    margin-bottom: var(--space-5);
+}
+
+h3 {
+    font-size: var(--text-3xl);
+    line-height: var(--leading-snug);
+}
+
+h4 {
+    font-size: var(--text-2xl);
+}
+
+h5 {
+    font-size: var(--text-xl);
+}
+
+h6 {
+    font-size: var(--text-lg);
+}
+
+p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+    max-width: 70ch;
+    /* Optimal reading width */
+}
+
+small {
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+}
+
+strong,
+b {
+    font-weight: var(--font-semibold);
+    color: var(--color-text);
+}
+
+/* ============================================
+   LINKS
+   ============================================ */
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast), opacity var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-primary-dim);
+    text-decoration: underline;
+}
+
+/* ============================================
+   UTILITY: CONTAINER
+   ============================================ */
+.container {
+    width: 100%;
+    max-width: var(--container-xl);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+}
+
+/* ============================================
+   UTILITY: COMMON LAYOUT HELPERS
+   ============================================ */
+.section {
+    padding-block: var(--space-16);
+}
+
+.card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    box-shadow: var(--shadow-md);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-glow);
+    border-color: var(--color-primary);
+    transition: box-shadow var(--transition-base), border-color var(--transition-base);
+}
