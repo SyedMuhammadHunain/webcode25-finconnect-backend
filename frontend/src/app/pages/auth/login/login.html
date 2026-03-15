@@ -3,7 +3,7 @@
         Sign in to your account
     </ng-template>
 
-    <p-message *ngIf="errorMessage()" severity="error" [text]="errorMessage() || ''"></p-message>
+    <app-error [text]="errorMessage()"></app-error>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div>

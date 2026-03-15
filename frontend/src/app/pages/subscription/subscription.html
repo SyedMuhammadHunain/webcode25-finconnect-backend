@@ -5,8 +5,8 @@
     </div>
 
     <div class="messages">
-        <p-message *ngIf="errorMessage()" severity="error" [text]="errorMessage() || ''"></p-message>
-        <p-message *ngIf="successMessage()" severity="success" [text]="successMessage() || ''"></p-message>
+        <app-error [text]="errorMessage()"></app-error>
+        <app-success [text]="successMessage()"></app-success>
     </div>
 
     <div class="plans-grid">

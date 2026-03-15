@@ -13,6 +13,7 @@ import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { FloatLabel } from 'primeng/floatlabel';
 import { Loading } from '../../../shared/components/loading/loading';
+import { ErrorComponent } from '../../../shared/components/messages/error/error';
 
 @Component({
   selector: 'app-login',
@@ -25,9 +26,9 @@ import { Loading } from '../../../shared/components/loading/loading';
     InputTextModule,
     PasswordModule,
     ButtonModule,
-    MessageModule,
     FloatLabel,
-    Loading
+    Loading,
+    ErrorComponent
   ],
   templateUrl: './login.html',
   styleUrl: './login.css',

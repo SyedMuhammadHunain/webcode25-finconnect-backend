@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import { SubscriptionService } from '../../core/services/subscription.service';
 import { SubscriptionType, SubscriptionData } from '../../core/models/subscription.model';
 import { CardModule } from 'primeng/card';
-import { MessageModule } from 'primeng/message';
 import { Loading } from '../../shared/components/loading/loading';
+import { ErrorComponent } from '../../shared/components/messages/error/error';
+import { SuccessComponent } from '../../shared/components/messages/success/success';
 
 interface Plan {
   type: SubscriptionType;
@@ -18,7 +19,7 @@ interface Plan {
 @Component({
   selector: 'app-subscription',
   standalone: true,
-  imports: [CommonModule, CardModule, MessageModule, Loading],
+  imports: [CommonModule, CardModule, Loading, ErrorComponent, SuccessComponent],
   templateUrl: './subscription.html',
   styleUrl: './subscription.css',
 })

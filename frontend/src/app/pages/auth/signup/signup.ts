@@ -13,6 +13,8 @@ import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { FloatLabel } from 'primeng/floatlabel';
 import { Loading } from '../../../shared/components/loading/loading';
+import { ErrorComponent } from '../../../shared/components/messages/error/error';
+import { SuccessComponent } from '../../../shared/components/messages/success/success';
 
 @Component({
   selector: 'app-signup',
@@ -25,9 +27,10 @@ import { Loading } from '../../../shared/components/loading/loading';
     InputTextModule,
     PasswordModule,
     ButtonModule,
-    MessageModule,
     FloatLabel,
-    Loading
+    Loading,
+    ErrorComponent,
+    SuccessComponent
   ],
   templateUrl: './signup.html',
   styleUrl: './signup.css',
