@@ -8,7 +8,6 @@ import { Model } from 'mongoose';
 import * as compression from 'compression';
 import { json, urlencoded } from 'express';
 import helmet from 'helmet';
-import * as mongoSanitize from 'express-mongo-sanitize';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -19,8 +18,6 @@ async function bootstrap() {
     origin: 'http://localhost:4200',
     credentials: true,
   }); // Protect against cross-origin abuse
-  app.use(mongoSanitize()); // Prevent NoSQL injection attacks by sanitizing payload characters
-
   // Enforce reasonable payload size limits
   app.use(json({ limit: '1mb' }));
   app.use(urlencoded({ extended: true, limit: '1mb' }));

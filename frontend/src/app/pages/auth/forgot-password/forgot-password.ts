@@ -12,6 +12,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { FloatLabel } from 'primeng/floatlabel';
+import { Loading } from '../../../shared/components/loading/loading';
 
 @Component({
   selector: 'app-forgot-password',
@@ -24,7 +25,8 @@ import { FloatLabel } from 'primeng/floatlabel';
     InputTextModule,
     ButtonModule,
     MessageModule,
-    FloatLabel
+    FloatLabel,
+    Loading
   ],
   templateUrl: './forgot-password.html',
   styleUrl: './forgot-password.css',

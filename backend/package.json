@@ -35,7 +35,6 @@
     "class-validator": "^0.15.1",
     "compression": "^1.8.1",
     "crypto-random-string": "^5.0.0",
-    "express-mongo-sanitize": "^2.2.0",
     "helmet": "^8.1.0",
     "mongoose": "^9.3.0",
     "nodemailer": "^8.0.2",

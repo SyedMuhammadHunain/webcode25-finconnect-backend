@@ -13,6 +13,7 @@ import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { FloatLabel } from 'primeng/floatlabel';
+import { Loading } from '../../../shared/components/loading/loading';
 
 @Component({
   selector: 'app-update-password',
@@ -26,7 +27,8 @@ import { FloatLabel } from 'primeng/floatlabel';
     PasswordModule,
     ButtonModule,
     MessageModule,
-    FloatLabel
+    FloatLabel,
+    Loading
   ],
   templateUrl: './update-password.html',
   styleUrl: './update-password.css',

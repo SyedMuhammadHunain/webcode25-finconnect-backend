@@ -38,10 +38,8 @@
             </div>
         </div>
 
-        <div>
-            <p-button type="submit" [loading]="isLoading()" label="Sign In" icon="pi pi-sign-in"
-                [disabled]="loginForm.invalid || isLoading()"></p-button>
-        </div>
+        <app-loading [loading]="isLoading()" label="Sign In" icon="pi pi-sign-in"
+            [disabled]="loginForm.invalid || isLoading()"></app-loading>
     </form>
 
     <ng-template #footer>

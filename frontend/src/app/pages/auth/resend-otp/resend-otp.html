@@ -18,10 +18,8 @@
             </div>
         </div>
 
-        <div>
-            <p-button type="submit" [loading]="isLoading()" label="Resend OTP" icon="pi pi-send"
-                [disabled]="resendOtpForm.invalid || isLoading()"></p-button>
-        </div>
+        <app-loading [loading]="isLoading()" label="Resend OTP" icon="pi pi-send"
+            [disabled]="resendOtpForm.invalid || isLoading()"></app-loading>
     </form>
 
     <ng-template #footer>

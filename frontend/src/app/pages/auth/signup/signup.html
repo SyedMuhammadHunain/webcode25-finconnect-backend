@@ -41,10 +41,8 @@
             </div>
         </div>
 
-        <div>
-            <p-button type="submit" [loading]="isLoading()" label="Sign Up" icon="pi pi-user-plus"
-                [disabled]="signupForm.invalid || isLoading()"></p-button>
-        </div>
+        <app-loading [loading]="isLoading()" label="Sign Up" icon="pi pi-user-plus"
+            [disabled]="signupForm.invalid || isLoading()"></app-loading>
     </form>
 
     <ng-template #footer>
