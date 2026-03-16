@@ -13,19 +13,21 @@ import { CustomRequest } from 'src/common/interfaces/custom-request.interface';
 
 @Controller('api/subscription/')
 export class StripeController {
-  constructor(private readonly stripeService: StripeService) {}
+  constructor(private readonly stripeService: StripeService) { }
 
   @UseGuards(AuthGuard)
   @Get('create-checkout-session')
   async createCheckoutSession(
-    @Query('priceId') priceId: string,
+    @Query('amount') amount: string,
+    @Query('planName') planName: string,
     @Req() req: CustomRequest,
   ): Promise<{ url: string }> {
     try {
       const userId = req.user.sub;
       const sessionUrl = await this.stripeService.createCheckoutSession(
         userId,
-        priceId,
+        parseInt(amount, 10) || 1000,
+        planName || 'Subscription Plan',
       );
 
       if (!sessionUrl) {

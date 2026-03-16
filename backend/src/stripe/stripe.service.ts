@@ -38,20 +38,31 @@ export class StripeService {
 
   async createCheckoutSession(
     userId: string,
-    priceId: string, // Use priceId instead of amount, currency, etc.
+    amount: number,     // amount in cents (e.g. 1000 = $10.00)
+    planName: string,   // e.g. "Basic Plan"
   ): Promise<string | null> {
     try {
       const session = await this.stripe.checkout.sessions.create({
+        payment_method_types: ['card'], // Disable Google Pay / Apple Pay — force manual card entry
         line_items: [
           {
-            price: priceId, // Use the price ID
+            price_data: {
+              currency: 'usd',
+              unit_amount: amount, // in cents
+              product_data: {
+                name: planName,
+              },
+              recurring: {
+                interval: 'month',
+              },
+            },
             quantity: 1,
           },
         ],
-        mode: 'subscription', // Set mode to 'subscription'
-        success_url: this.successUrl, // Replace with your actual success URL
-        cancel_url: this.cancelUrl, // Replace with your actual cancel URL
-        client_reference_id: userId, // Store userId for later use
+        mode: 'subscription',
+        success_url: this.successUrl,
+        cancel_url: this.cancelUrl,
+        client_reference_id: userId,
       });
 
       return session.url;

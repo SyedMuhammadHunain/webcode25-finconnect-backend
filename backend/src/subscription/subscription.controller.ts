@@ -23,18 +23,19 @@ export class SubscriptionController {
   ): Promise<{ message: string; url?: string }> {
     const userId = req.user.sub;
 
-    // Map subscription type to a placeholder price ID
-    // In a real app, these would be fetched from a config or database
-    const priceMap: Record<SubscriptionType, string> = {
-      [SubscriptionType.BASIC]: 'price_1RGHu25t8kNCoSjhA1B1B1B1', // Use real ones if available
-      [SubscriptionType.STANDARD]: 'price_1RGHu25t8kNCoSjhA2B2B2B2',
-      [SubscriptionType.PREMIUM]: 'price_1RGHu25t8kNCoSjhA3B3B3B3',
+    // Map subscription type to amount in cents and a display name
+    const planDetails: Record<SubscriptionType, { amountCents: number; label: string }> = {
+      [SubscriptionType.BASIC]: { amountCents: 1000, label: 'Basic Plan ($10/month)' },
+      [SubscriptionType.STANDARD]: { amountCents: 2500, label: 'Standard Plan ($25/month)' },
+      [SubscriptionType.PREMIUM]: { amountCents: 5000, label: 'Premium Plan ($50/month)' },
     };
 
-    const priceId = priceMap[body.subscriptionType];
+    const { amountCents, label } = planDetails[body.subscriptionType];
+
     const sessionUrl = await this.stripeService.createCheckoutSession(
       userId,
-      priceId,
+      amountCents,
+      label,
     );
 
     return {

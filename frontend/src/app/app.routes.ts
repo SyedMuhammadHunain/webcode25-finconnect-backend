@@ -26,6 +26,14 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/subscription/subscription').then(m => m.Subscription)
     },
     {
+        path: 'payment-success',
+        loadComponent: () => import('./pages/payment-success/payment-success').then(m => m.PaymentSuccess)
+    },
+    {
+        path: 'payment-cancelled',
+        loadComponent: () => import('./pages/payment-cancelled/payment-cancelled').then(m => m.PaymentCancelled)
+    },
+    {
         path: '',
         redirectTo: 'login',
         pathMatch: 'full'
