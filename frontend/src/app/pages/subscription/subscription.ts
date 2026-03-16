@@ -69,8 +69,13 @@ export class Subscription {
       next: (response) => {
         this.isLoading.set(false);
         this.successMessage.set(response.message);
-        // Optionally navigate after success
-        setTimeout(() => this.router.navigate(['/']), 2000);
+
+        if (response.url) {
+          window.location.href = response.url;
+        } else {
+          // Fallback if no URL is returned
+          setTimeout(() => this.router.navigate(['/']), 2000);
+        }
       },
       error: (err) => {
         this.isLoading.set(false);

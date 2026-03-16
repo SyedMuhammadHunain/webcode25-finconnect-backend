@@ -10,12 +10,21 @@ import { User, UserDocument } from 'src/schemas/user.schema';
 export class StripeService {
   private stripe: Stripe;
   private readonly logger = new Logger(StripeService.name);
+  private readonly successUrl: string;
+  private readonly cancelUrl: string;
 
   constructor(
     private configService: ConfigService,
     @InjectModel('User') private readonly userModel: Model<User>,
   ) {
     const stripeSecretKey = this.configService.get<string>('STRIPE_SECRET_KEY');
+
+    this.successUrl =
+      this.configService.get<string>('STRIPE_SUCCESS_URL') ||
+      'http://localhost:4200/';
+    this.cancelUrl =
+      this.configService.get<string>('STRIPE_CANCEL_URL') ||
+      'http://localhost:4200/subscription';
 
     if (!stripeSecretKey) {
       this.logger.error('STRIPE_SECRET_KEY is not defined in the environment.');
@@ -40,8 +49,8 @@ export class StripeService {
           },
         ],
         mode: 'subscription', // Set mode to 'subscription'
-        success_url: `http://localhost:4242/success.html`, // Replace with your actual success URL
-        cancel_url: `http://localhost:4242/cancel.html`, // Replace with your actual cancel URL
+        success_url: this.successUrl, // Replace with your actual success URL
+        cancel_url: this.cancelUrl, // Replace with your actual cancel URL
         client_reference_id: userId, // Store userId for later use
       });
 

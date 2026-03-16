@@ -11,4 +11,5 @@ export interface SubscriptionData {
 
 export interface SubscriptionResponse {
     message: string;
+    url?: string;
 }

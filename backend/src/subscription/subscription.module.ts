@@ -6,12 +6,15 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from 'src/schemas/user.schema';
 import { JwtConfig } from 'src/config/jwt.config';
 
+import { StripeModule } from 'src/stripe/stripe.module';
+
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     JwtConfig,
+    StripeModule,
   ],
   controllers: [SubscriptionController],
   providers: [SubscriptionService],
 })
-export class SubscriptionModule {}
+export class SubscriptionModule { }
