@@ -1,0 +1,22 @@
+<div class="page-center">
+    <p-card class="status-card">
+        <ng-template #header>
+            <div class="status-icon success-icon">
+                <i class="pi pi-check-circle"></i>
+            </div>
+        </ng-template>
+
+        <ng-template #title>Payment Successful!</ng-template>
+        <ng-template #subtitle>Thank you for subscribing. Your plan is now active.</ng-template>
+
+        <ng-template #footer>
+            <div class="status-actions">
+                <p-button label="Go to Dashboard" icon="pi pi-home" (onClick)="goToDashboard()">
+                </p-button>
+                <p-button label="View Subscription" icon="pi pi-star" [outlined]="true" severity="secondary"
+                    (onClick)="goToSubscription()">
+                </p-button>
+            </div>
+        </ng-template>
+    </p-card>
+</div>

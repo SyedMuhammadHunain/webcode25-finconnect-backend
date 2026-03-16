@@ -1,0 +1,22 @@
+<div class="page-center">
+    <p-card class="status-card">
+        <ng-template #header>
+            <div class="status-icon cancel-icon">
+                <i class="pi pi-times-circle"></i>
+            </div>
+        </ng-template>
+
+        <ng-template #title>Payment Cancelled</ng-template>
+        <ng-template #subtitle>No worries — you haven't been charged. You can try again whenever you're
+            ready.</ng-template>
+
+        <ng-template #footer>
+            <div class="status-actions">
+                <p-button label="Try Again" icon="pi pi-refresh" (onClick)="retrySubscription()">
+                </p-button>
+                <p-button label="Go Home" icon="pi pi-home" [outlined]="true" severity="secondary" (onClick)="goHome()">
+                </p-button>
+            </div>
+        </ng-template>
+    </p-card>
+</div>
