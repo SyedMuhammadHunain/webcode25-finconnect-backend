@@ -1,3 +1,41 @@
- .invoices-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    .invoices-table th, .invoices-table td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
-    .error { color: red; }
+:host {
+    display: block;
+    width: 100%;
+}
+
+/* Primeng Table Overrides for Deep Matrix */
+::ng-deep .p-datatable-wrapper {
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+}
+
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+    background-color: var(--color-bg-surface);
+    color: var(--color-primary);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-3) var(--space-4);
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr {
+    background-color: var(--color-bg-card);
+    transition: background-color var(--transition-fast);
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr:hover {
+    background-color: var(--color-bg-surface);
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+}
+
+/* Paginator Fixes */
+::ng-deep .p-paginator {
+    background-color: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-top: none;
+    border-bottom-left-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
+}

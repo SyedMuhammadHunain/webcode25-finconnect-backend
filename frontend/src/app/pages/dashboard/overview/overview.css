@@ -1,2 +1,20 @@
- .balance { font-size: 2em; font-weight: bold; color: #2ecc71; }
-    .error { color: red; }
+.balance {
+    font-size: var(--text-4xl);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: var(--space-4) 0;
+    text-shadow: 0 0 20px rgba(180, 255, 0, 0.2);
+}
+
+::ng-deep .p-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+::ng-deep .p-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(180, 255, 0, 0.1);
+    border-color: var(--color-primary);
+}

@@ -1,0 +1,37 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--color-bg);
+}
+
+::ng-deep p-card {
+    width: 100%;
+    max-width: 450px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-top: var(--space-4);
+}
+
+::ng-deep .p-floatlabel input, 
+::ng-deep .p-floatlabel p-password,
+::ng-deep .p-floatlabel .p-password-input {
+    width: 100%;
+}
+
+small {
+    color: var(--color-primary); /* For error messages to stand out, could use error color but using primary variant to match theme */
+    display: block;
+    margin-top: var(--space-1);
+    font-size: var(--text-xs);
+}
+
+[slot="footer"] div {
+    margin-top: var(--space-2);
+    text-align: center;
+}
