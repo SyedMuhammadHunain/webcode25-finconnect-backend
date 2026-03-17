@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -32,6 +33,17 @@ export const routes: Routes = [
     {
         path: 'payment-cancelled',
         loadComponent: () => import('./pages/payment-cancelled/payment-cancelled').then(m => m.PaymentCancelled)
+    },
+    {
+        path: 'dashboard',
+        loadComponent: () => import('./pages/dashboard/dashboard-layout.component').then(m => m.DashboardLayoutComponent),
+        canActivate: [authGuard],
+        children: [
+            { path: '', loadComponent: () => import('./pages/dashboard/overview/overview.component').then(m => m.OverviewComponent) },
+            { path: 'transactions', loadComponent: () => import('./pages/dashboard/transactions/transactions.component').then(m => m.TransactionsComponent) },
+            { path: 'invoices', loadComponent: () => import('./pages/dashboard/invoices/invoices.component').then(m => m.InvoicesComponent) },
+            { path: 'transfer', loadComponent: () => import('./pages/dashboard/transfer/transfer.component').then(m => m.TransferComponent) },
+        ]
     },
     {
         path: '',
