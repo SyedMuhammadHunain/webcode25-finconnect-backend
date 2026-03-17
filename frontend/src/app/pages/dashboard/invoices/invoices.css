@@ -1,41 +1,223 @@
 :host {
     display: block;
     width: 100%;
+    animation: fadeIn 0.3s ease;
 }
 
-/* Primeng Table Overrides for Deep Matrix */
-::ng-deep .p-datatable-wrapper {
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
+/* ========================================
+   PAGE HEADER
+   ======================================== */
+.page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: var(--space-6);
 }
 
-::ng-deep .p-datatable .p-datatable-thead > tr > th {
-    background-color: var(--color-bg-surface);
-    color: var(--color-primary);
-    border-bottom: 1px solid var(--color-border);
-    padding: var(--space-3) var(--space-4);
+.page-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-1);
 }
 
-::ng-deep .p-datatable .p-datatable-tbody > tr {
+.page-subtitle {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+}
+
+/* ========================================
+   LOADING
+   ======================================== */
+.loading-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
     background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8) var(--space-6);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+}
+
+.loading-row .pi-spinner {
+    font-size: 18px;
+    color: var(--color-primary);
+}
+
+/* ========================================
+   TABLE CARD
+   ======================================== */
+.table-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+::ng-deep .table-card .p-datatable-wrapper {
+    border: none;
+    border-radius: 0;
+}
+
+::ng-deep .table-card .p-datatable .p-datatable-thead>tr>th {
+    background-color: var(--color-bg-surface);
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-4) var(--space-5);
+}
+
+::ng-deep .table-card .p-datatable .p-datatable-tbody>tr {
+    background-color: transparent;
+    border-bottom: 1px solid var(--color-border-subtle);
     transition: background-color var(--transition-fast);
 }
 
-::ng-deep .p-datatable .p-datatable-tbody > tr:hover {
-    background-color: var(--color-bg-surface);
+::ng-deep .table-card .p-datatable .p-datatable-tbody>tr:last-child {
+    border-bottom: none;
 }
 
-::ng-deep .p-datatable .p-datatable-tbody > tr > td {
-    padding: var(--space-3) var(--space-4);
-    border-bottom: 1px solid var(--color-border);
+::ng-deep .table-card .p-datatable .p-datatable-tbody>tr:hover {
+    background-color: var(--color-bg-elevated);
+}
+
+::ng-deep .table-card .p-datatable .p-datatable-tbody>tr>td {
+    padding: var(--space-4) var(--space-5);
     color: var(--color-text);
+    font-size: var(--text-sm);
+    vertical-align: middle;
+    border: none;
 }
 
-/* Paginator Fixes */
-::ng-deep .p-paginator {
+/* Paginator Overrides */
+::ng-deep .table-card .p-paginator {
+    background-color: var(--color-bg-surface);
+    border-top: 1px solid var(--color-border-subtle);
+    border-radius: 0;
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+}
+
+/* Column styles */
+.col-date {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text-muted) !important;
+    font-size: var(--text-xs) !important;
+    font-family: var(--font-mono);
+    white-space: nowrap;
+}
+
+.col-icon {
+    font-size: 12px;
+    color: var(--color-text-faint);
+}
+
+.col-id .id-mono {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
     background-color: var(--color-bg-surface);
     border: 1px solid var(--color-border);
-    border-top: none;
-    border-bottom-left-radius: var(--radius-md);
-    border-bottom-right-radius: var(--radius-md);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+}
+
+/* Amount pill */
+.amount-pill {
+    display: inline-flex;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    font-family: var(--font-mono);
+}
+
+.pill-positive {
+    background-color: rgba(180, 255, 0, 0.1);
+    color: var(--color-primary);
+    border: 1px solid rgba(180, 255, 0, 0.2);
+}
+
+/* Status badges */
+.status-badge {
+    display: inline-flex;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: capitalize;
+}
+
+.status-paid {
+    background-color: rgba(180, 255, 0, 0.08);
+    color: var(--color-primary);
+    border: 1px solid rgba(180, 255, 0, 0.2);
+}
+
+.status-pending {
+    background-color: rgba(245, 158, 11, 0.08);
+    color: var(--color-warning);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.status-overdue {
+    background-color: rgba(255, 77, 106, 0.08);
+    color: var(--color-error);
+    border: 1px solid rgba(255, 77, 106, 0.2);
+}
+
+/* ========================================
+   EMPTY STATE
+   ======================================== */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-12) var(--space-8);
+    background-color: var(--color-bg-card);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    gap: var(--space-3);
+}
+
+.empty-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-primary-subtle);
+    border: 1px solid rgba(180, 255, 0, 0.15);
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+}
+
+.empty-state h4 {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0;
+}
+
+.empty-state p {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: 0;
 }

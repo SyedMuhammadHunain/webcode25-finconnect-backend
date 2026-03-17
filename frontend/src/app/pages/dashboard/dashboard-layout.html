@@ -1,17 +1,90 @@
 <div class="dashboard-layout">
+    <!-- Sidebar -->
     <aside class="sidebar">
-        <nav>
+        <!-- Brand -->
+        <div class="sidebar-brand">
+            <div class="brand-icon">
+                <i class="pi pi-bolt"></i>
+            </div>
+            <span class="brand-name">FinConnect</span>
+        </div>
+
+        <div class="sidebar-divider"></div>
+
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+            <p class="nav-section-label">Main Menu</p>
             <ul>
-                <li><a routerLink="/dashboard" routerLinkActive="active"
-                        [routerLinkActiveOptions]="{exact: true}">Overview</a></li>
-                <li><a routerLink="/dashboard/transactions" routerLinkActive="active">Transactions</a></li>
-                <li><a routerLink="/dashboard/invoices" routerLinkActive="active">Invoices</a></li>
-                <li><a routerLink="/dashboard/transfer" routerLinkActive="active">Transfer</a></li>
-                <li><a routerLink="/subscription" routerLinkActive="active">Subscription</a></li>
+                <li>
+                    <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="pi pi-home nav-icon"></i>
+                        <span>Overview</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/dashboard/transactions" routerLinkActive="active">
+                        <i class="pi pi-list nav-icon"></i>
+                        <span>Transactions</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/dashboard/invoices" routerLinkActive="active">
+                        <i class="pi pi-file nav-icon"></i>
+                        <span>Invoices</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/dashboard/transfer" routerLinkActive="active">
+                        <i class="pi pi-send nav-icon"></i>
+                        <span>Transfer</span>
+                    </a>
+                </li>
+            </ul>
+
+            <p class="nav-section-label" style="margin-top: 24px;">Account</p>
+            <ul>
+                <li>
+                    <a routerLink="/subscription" routerLinkActive="active">
+                        <i class="pi pi-star nav-icon"></i>
+                        <span>Subscription</span>
+                    </a>
+                </li>
             </ul>
         </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <div class="sidebar-divider"></div>
+            <div class="user-card">
+                <div class="user-avatar">
+                    <i class="pi pi-user"></i>
+                </div>
+                <div class="user-info">
+                    <span class="user-name">My Account</span>
+                    <span class="user-role">Pro Member</span>
+                </div>
+            </div>
+        </div>
     </aside>
+
+    <!-- Main Content -->
     <main class="content">
-        <router-outlet></router-outlet>
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <div class="breadcrumb-dot"></div>
+                <span class="topbar-title">Dashboard</span>
+            </div>
+            <div class="topbar-right">
+                <div class="topbar-time">{{ currentTime }}</div>
+                <div class="notification-bell">
+                    <i class="pi pi-bell"></i>
+                    <span class="notif-dot"></span>
+                </div>
+            </div>
+        </header>
+        <div class="content-body">
+            <router-outlet></router-outlet>
+        </div>
     </main>
 </div>

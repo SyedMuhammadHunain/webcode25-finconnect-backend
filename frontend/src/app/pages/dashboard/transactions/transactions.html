@@ -1,33 +1,74 @@
-<div class="card">
-    <h2>Transactions</h2>
-    <div *ngIf="loading">Loading transactions...</div>
-    
-    <p-table *ngIf="transactions.length > 0" [value]="transactions" responsiveLayout="scroll">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Status</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-tx>
-            <tr>
-                <td>{{ tx.date | date }}</td>
-                <td>{{ tx.description || tx.type || 'Transaction' }}</td>
-                <td [class.negative]="tx.amount < 0">{{ tx.amount | currency }}</td>
-                <td>{{ tx.status || 'Completed' }}</td>
-            </tr>
-        </ng-template>
-    </p-table>
-    
-    <div *ngIf="!loading && transactions.length === 0">
-        No transactions found.
+<div class="transactions-page">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div>
+            <h2 class="page-title">Transactions</h2>
+            <p class="page-subtitle">Full history of your account activity</p>
+        </div>
+        <div class="badge badge-info" *ngIf="transactions.length > 0">
+            {{ transactions.length }} records
+        </div>
     </div>
 
-    <div class="flex align-items-center justify-content-between mt-3" *ngIf="transactions.length > 0">
-        <p-button label="Previous" icon="pi pi-chevron-left" (click)="loadPage(page - 1)" [disabled]="page === 1"></p-button>
-        <span class="font-bold">Page {{ page }}</span>
-        <p-button label="Next" icon="pi pi-chevron-right" iconPos="right" (click)="loadPage(page + 1)"></p-button>
+    <!-- Loading -->
+    <div class="loading-row" *ngIf="loading">
+        <i class="pi pi-spin pi-spinner"></i>
+        <span>Loading transactions...</span>
+    </div>
+
+    <!-- Table Card -->
+    <div class="table-card" *ngIf="!loading && transactions.length > 0">
+        <p-table [value]="transactions" responsiveLayout="scroll" [rowHover]="true">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-tx>
+                <tr>
+                    <td class="col-date">
+                        <i class="pi pi-calendar col-icon"></i>
+                        {{ tx.date | date:'MMM d, y' }}
+                    </td>
+                    <td class="col-desc">{{ tx.description || tx.type || 'Transaction' }}</td>
+                    <td [class.col-negative]="tx.amount < 0" [class.col-positive]="tx.amount >= 0">
+                        <span class="amount-pill" [class.pill-negative]="tx.amount < 0"
+                            [class.pill-positive]="tx.amount >= 0">
+                            {{ tx.amount | currency }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="status-badge" [class.status-completed]="(tx.status || 'Completed') === 'Completed'"
+                            [class.status-pending]="tx.status === 'Pending'"
+                            [class.status-failed]="tx.status === 'Failed'">
+                            {{ tx.status || 'Completed' }}
+                        </span>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+        <!-- Pagination -->
+        <div class="pagination-row" *ngIf="transactions.length > 0">
+            <p-button label="Previous" icon="pi pi-chevron-left" [outlined]="true" (click)="loadPage(page - 1)"
+                [disabled]="page === 1" size="small">
+            </p-button>
+            <span class="page-indicator">Page {{ page }}</span>
+            <p-button label="Next" icon="pi pi-chevron-right" iconPos="right" [outlined]="true"
+                (click)="loadPage(page + 1)" size="small">
+            </p-button>
+        </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="!loading && transactions.length === 0">
+        <div class="empty-icon">
+            <i class="pi pi-inbox"></i>
+        </div>
+        <h4>No Transactions Yet</h4>
+        <p>Once you make transfers, they'll appear here.</p>
     </div>
 </div>

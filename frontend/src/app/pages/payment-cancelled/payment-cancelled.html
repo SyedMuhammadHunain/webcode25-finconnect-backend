@@ -1,22 +1,34 @@
-<div class="page-center">
-    <p-card class="status-card">
-        <ng-template #header>
-            <div class="status-icon cancel-icon">
-                <i class="pi pi-times-circle"></i>
-            </div>
-        </ng-template>
+<div class="status-page">
+    <div class="status-card">
+        <!-- Cancel Icon -->
+        <div class="status-icon-wrap status-cancel-wrap">
+            <div class="status-icon-ring"></div>
+            <i class="pi pi-times status-icon"></i>
+        </div>
 
-        <ng-template #title>Payment Cancelled</ng-template>
-        <ng-template #subtitle>No worries — you haven't been charged. You can try again whenever you're
-            ready.</ng-template>
+        <!-- Content -->
+        <div class="status-content">
+            <h2 class="status-title">Payment Cancelled</h2>
+            <p class="status-subtitle">
+                No worries — you haven't been charged.<br>
+                You can try again whenever you're ready.
+            </p>
 
-        <ng-template #footer>
-            <div class="status-actions">
-                <p-button label="Try Again" icon="pi pi-refresh" (onClick)="retrySubscription()">
-                </p-button>
-                <p-button label="Go Home" icon="pi pi-home" [outlined]="true" severity="secondary" (onClick)="goHome()">
-                </p-button>
+            <!-- Info Box -->
+            <div class="status-info-box status-info-cancel">
+                <i class="pi pi-shield"></i>
+                <span>Your account is safe. No charges were made.</span>
             </div>
-        </ng-template>
-    </p-card>
+        </div>
+
+        <!-- Actions -->
+        <div class="status-actions">
+            <p-button label="Try Again" icon="pi pi-refresh" (onClick)="retrySubscription()"
+                styleClass="status-btn-primary">
+            </p-button>
+            <p-button label="Go Home" icon="pi pi-home" [outlined]="true" (onClick)="goHome()"
+                styleClass="status-btn-ghost">
+            </p-button>
+        </div>
+    </div>
 </div>

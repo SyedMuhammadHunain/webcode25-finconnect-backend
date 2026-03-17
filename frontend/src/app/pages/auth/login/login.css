@@ -4,34 +4,191 @@
     align-items: center;
     min-height: 100vh;
     background-color: var(--color-bg);
+    background-image:
+        radial-gradient(ellipse 60% 50% at 50% -10%, rgba(180, 255, 0, 0.06) 0%, transparent 70%);
+    padding: var(--space-6);
 }
 
-::ng-deep p-card {
+/* ========================================
+   CARD WRAPPER
+   ======================================== */
+.auth-card {
     width: 100%;
-    max-width: 450px;
+    max-width: 460px;
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-10) var(--space-8);
+    box-shadow: var(--shadow-lg);
+    animation: slideIn 0.4s ease;
 }
 
-form {
+/* ========================================
+   BRAND HEADER
+   ======================================== */
+.auth-brand {
     display: flex;
     flex-direction: column;
-    gap: var(--space-6);
-    margin-top: var(--space-4);
+    align-items: center;
+    margin-bottom: var(--space-8);
+    text-align: center;
 }
 
-::ng-deep .p-floatlabel input, 
-::ng-deep .p-floatlabel p-password,
-::ng-deep .p-floatlabel .p-password-input {
+.auth-brand-icon {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #8ecc00 100%);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: var(--color-primary-contrast);
+    margin-bottom: var(--space-4);
+    box-shadow: 0 0 30px rgba(180, 255, 0, 0.25);
+}
+
+.auth-brand-name {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-1);
+}
+
+.auth-brand-sub {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+}
+
+/* Divider */
+.auth-divider {
+    height: 1px;
+    background: var(--color-border-subtle);
+    margin: var(--space-6) 0;
+}
+
+/* ========================================
+   FORM
+   ======================================== */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.auth-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.auth-form-group label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.form-label-icon {
+    font-size: 12px;
+    color: var(--color-primary);
+}
+
+/* PrimeNG float label & input overrides */
+::ng-deep .auth-form .p-floatlabel {
     width: 100%;
 }
 
-small {
-    color: var(--color-primary); /* For error messages to stand out, could use error color but using primary variant to match theme */
-    display: block;
-    margin-top: var(--space-1);
-    font-size: var(--text-xs);
+::ng-deep .auth-form .p-floatlabel input,
+::ng-deep .auth-form .p-floatlabel .p-password,
+::ng-deep .auth-form .p-floatlabel .p-password-input {
+    width: 100%;
+    background-color: var(--color-bg-input);
+    border: 1.5px solid var(--color-border);
+    color: var(--color-text);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-family: var(--font-primary);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
 }
 
-[slot="footer"] div {
-    margin-top: var(--space-2);
+::ng-deep .auth-form .p-floatlabel input:focus,
+::ng-deep .auth-form .p-floatlabel .p-password-input:focus {
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 3px var(--color-primary-glow) !important;
+    background-color: var(--color-bg-elevated);
+    outline: none;
+}
+
+::ng-deep .auth-form .p-floatlabel label {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+}
+
+/* Validation message */
+.field-error {
+    font-size: var(--text-xs);
+    color: var(--color-error);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 2px;
+    animation: slideIn 0.15s ease;
+}
+
+/* Submit Button Override */
+::ng-deep .auth-submit-btn.p-button,
+::ng-deep .auth-form app-loading button {
+    width: 100%;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #8ecc00 100%);
+    color: var(--color-primary-contrast);
+    border: none;
+    font-weight: 700;
+    font-size: var(--text-sm);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    transition: opacity var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    letter-spacing: 0.02em;
+    cursor: pointer;
+}
+
+::ng-deep .auth-form app-loading button:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lime);
+}
+
+::ng-deep .auth-form app-loading button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* Footer links */
+.auth-footer {
+    margin-top: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
     text-align: center;
+}
+
+.auth-footer a {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.auth-footer a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.auth-footer a strong {
+    color: var(--color-primary);
+    font-weight: 600;
 }

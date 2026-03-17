@@ -1,36 +1,70 @@
-<div class="subscription-container">
-    <div class="header">
-        <h1>Choose Your Plan</h1>
-        <p>Select the best option for your business needs</p>
+<div class="subscription-page">
+    <!-- Page Header -->
+    <div class="sub-header">
+        <div class="sub-header-badge">
+            <i class="pi pi-bolt" style="font-size: 10px;"></i>
+            Plans & Pricing
+        </div>
+        <h1 class="sub-title">Choose Your Plan</h1>
+        <p class="sub-subtitle">Scale your financial operations with the right tier for your business</p>
     </div>
 
+    <!-- Plans Grid -->
     <div class="plans-grid">
-        <p-card *ngFor="let plan of plans" [header]="plan.label" class="plan-card"
-            [class.premium-card]="plan.type === 'premium'">
-            <ng-template #subtitle>
-                <div class="price-tag">
-                    <span class="currency">$</span>
-                    <span class="amount">{{ plan.price }}</span>
-                    <span class="period">/month</span>
-                </div>
-            </ng-template>
+        <div class="plan-card" *ngFor="let plan of plans" [class.plan-card-premium]="plan.type === 'premium'">
 
-            <div class="plan-content">
-                <div class="icon-wrapper">
-                    <i [class]="plan.icon"></i>
-                </div>
-
-                <ul class="features-list">
-                    <li *ngFor="let feature of plan.features">
-                        <i class="pi pi-check-circle"></i>
-                        {{ feature }}
-                    </li>
-                </ul>
-
-                <app-loading (click)="onSubscribe(plan)" [loading]="isLoading()" [label]="'Choose ' + plan.label"
-                    [icon]="'pi pi-chevron-right'" [disabled]="isLoading()">
-                </app-loading>
+            <!-- Premium Badge -->
+            <div class="plan-popular-badge" *ngIf="plan.type === 'premium'">
+                <i class="pi pi-star-fill"></i>
+                Most Popular
             </div>
-        </p-card>
+
+            <!-- Plan Icon -->
+            <div class="plan-icon-wrapper" [class.plan-icon-premium]="plan.type === 'premium'">
+                <i [class]="plan.icon"></i>
+            </div>
+
+            <!-- Plan Meta -->
+            <div class="plan-label">{{ plan.label }}</div>
+
+            <!-- Price -->
+            <div class="plan-price">
+                <span class="plan-currency">$</span>
+                <span class="plan-amount">{{ plan.price }}</span>
+                <span class="plan-period">/mo</span>
+            </div>
+
+            <!-- Divider -->
+            <div class="plan-divider"></div>
+
+            <!-- Features -->
+            <ul class="plan-features">
+                <li *ngFor="let feature of plan.features">
+                    <i class="pi pi-check-circle feature-check"></i>
+                    <span>{{ feature }}</span>
+                </li>
+            </ul>
+
+            <!-- CTA -->
+            <app-loading (click)="onSubscribe(plan)" [loading]="isLoading()" [label]="'Get ' + plan.label"
+                [icon]="'pi pi-arrow-right'" [disabled]="isLoading()">
+            </app-loading>
+        </div>
+    </div>
+
+    <!-- Trust badges -->
+    <div class="trust-row">
+        <div class="trust-item">
+            <i class="pi pi-shield"></i>
+            <span>Secure Payments via Stripe</span>
+        </div>
+        <div class="trust-item">
+            <i class="pi pi-refresh"></i>
+            <span>Cancel Anytime</span>
+        </div>
+        <div class="trust-item">
+            <i class="pi pi-lock"></i>
+            <span>256-bit SSL Encrypted</span>
+        </div>
     </div>
 </div>

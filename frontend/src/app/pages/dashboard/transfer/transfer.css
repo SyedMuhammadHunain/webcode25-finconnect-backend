@@ -1,25 +1,215 @@
-.transfer-container {
+:host {
+    display: block;
+    width: 100%;
+    animation: fadeIn 0.3s ease;
+}
+
+/* ========================================
+   PAGE HEADER
+   ======================================== */
+.page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: var(--space-6);
+}
+
+.page-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    color: var(--color-text);
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-1);
+}
+
+.page-subtitle {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+}
+
+/* ========================================
+   TRANSFER CARD
+   ======================================== */
+.transfer-card {
+    max-width: 520px;
     background-color: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    padding: var(--space-6) !important;
-    margin: 0 auto;
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    box-shadow: var(--shadow-md);
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
 }
 
-.transfer-container h2 {
-    color: var(--color-primary);
-    margin-bottom: var(--space-6);
-    text-align: center;
-    font-size: var(--text-2xl);
+.transfer-card:focus-within {
+    border-color: rgba(180, 255, 0, 0.2);
+    box-shadow: var(--shadow-lime), var(--shadow-md);
 }
 
-label {
+.transfer-card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+}
+
+.transfer-icon {
+    width: 46px;
+    height: 46px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #8ecc00 100%);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--color-primary-contrast);
+    box-shadow: 0 0 20px rgba(180, 255, 0, 0.25);
+    flex-shrink: 0;
+}
+
+.transfer-card-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-md);
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+}
+
+.transfer-card-subtitle {
+    font-size: var(--text-xs);
     color: var(--color-text-muted);
-    font-size: var(--text-sm);
-    font-weight: 500;
+    margin-top: 2px;
 }
 
-::ng-deep .p-inputnumber-input {
+.transfer-divider {
+    height: 1px;
+    background: var(--color-border-subtle);
+    margin: var(--space-5) 0;
+}
+
+/* ========================================
+   FORM
+   ======================================== */
+.transfer-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+    letter-spacing: 0.01em;
+}
+
+.form-label-icon {
+    font-size: 12px;
+    color: var(--color-primary);
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper input {
     width: 100%;
+    background-color: var(--color-bg-input);
+    border: 1.5px solid var(--color-border);
+    color: var(--color-text);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-sm);
+    font-family: var(--font-primary);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.input-wrapper input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-glow);
+    background-color: var(--color-bg-elevated);
+    outline: none;
+}
+
+.input-wrapper input::placeholder {
+    color: var(--color-text-faint);
+}
+
+/* PrimeNG InputNumber override */
+::ng-deep .transfer-form .p-inputnumber,
+::ng-deep .transfer-form .p-inputnumber .p-inputtext {
+    width: 100%;
+    background-color: var(--color-bg-input);
+    border: 1.5px solid var(--color-border);
+    color: var(--color-text);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-family: var(--font-primary);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+::ng-deep .transfer-form .p-inputnumber .p-inputtext:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-glow);
+    background-color: var(--color-bg-elevated);
+}
+
+/* Notice box */
+.transfer-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background-color: rgba(56, 189, 248, 0.05);
+    border: 1px solid rgba(56, 189, 248, 0.15);
+    border-radius: var(--radius-md);
+    font-size: var(--text-xs);
+    color: var(--color-info);
+    line-height: 1.5;
+}
+
+.transfer-notice .pi-info-circle {
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+/* Submit button */
+::ng-deep .transfer-submit-btn.p-button {
+    width: 100%;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #8ecc00 100%);
+    color: var(--color-primary-contrast);
+    border: none;
+    font-weight: 700;
+    font-size: var(--text-sm);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    transition: opacity var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    letter-spacing: 0.02em;
+}
+
+::ng-deep .transfer-submit-btn.p-button:hover:not(:disabled) {
+    opacity: 0.92;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lime);
+}
+
+::ng-deep .transfer-submit-btn.p-button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+::ng-deep .transfer-submit-btn.p-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }

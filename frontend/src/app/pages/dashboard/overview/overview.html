@@ -1,8 +1,84 @@
- <h2>Dashboard Overview</h2>
-    <div *ngIf="balance !== null">
-        <h3>Current Balance</h3>
-        <p class="balance">{{ balance | currency }}</p>
+<div class="overview-page">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div>
+            <h2 class="page-title">Overview</h2>
+            <p class="page-subtitle">Your financial snapshot at a glance</p>
+        </div>
+        <div class="badge badge-success">
+            <i class="pi pi-circle-fill" style="font-size: 8px;"></i>
+            Live
+        </div>
     </div>
-    <div *ngIf="error">
-        <p class="error">{{ error }}</p>
+
+    <!-- Balance Card (main hero card) -->
+    <div class="balance-hero" *ngIf="balance !== null">
+        <div class="balance-hero-inner">
+            <div class="balance-label">Current Balance</div>
+            <div class="balance-amount">{{ balance | currency }}</div>
+            <div class="balance-meta">
+                <span class="balance-trend up">
+                    <i class="pi pi-arrow-up-right"></i> Available Funds
+                </span>
+            </div>
+        </div>
+        <div class="balance-glow"></div>
     </div>
+
+    <!-- Loading state -->
+    <div class="loading-card" *ngIf="balance === null && !error">
+        <i class="pi pi-spin pi-spinner"></i>
+        <span>Fetching your balance...</span>
+    </div>
+
+    <!-- Error state -->
+    <div class="alert alert-error" *ngIf="error">
+        <i class="pi pi-exclamation-triangle"></i>
+        <span>{{ error }}</span>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid" *ngIf="balance !== null">
+        <div class="stat-card">
+            <div class="stat-icon stat-icon-green">
+                <i class="pi pi-arrow-down-left"></i>
+            </div>
+            <div class="stat-body">
+                <div class="stat-label">Total Received</div>
+                <div class="stat-value">—</div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon stat-icon-red">
+                <i class="pi pi-arrow-up-right"></i>
+            </div>
+            <div class="stat-body">
+                <div class="stat-label">Total Sent</div>
+                <div class="stat-value">—</div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon stat-icon-blue">
+                <i class="pi pi-file"></i>
+            </div>
+            <div class="stat-body">
+                <div class="stat-label">Invoices</div>
+                <div class="stat-value">—</div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon stat-icon-lime">
+                <i class="pi pi-star"></i>
+            </div>
+            <div class="stat-body">
+                <div class="stat-label">Subscription</div>
+                <div class="stat-value">Active</div>
+            </div>
+        </div>
+    </div>
+
+</div>

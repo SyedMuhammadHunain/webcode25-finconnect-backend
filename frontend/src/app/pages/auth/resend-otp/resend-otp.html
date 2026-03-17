@@ -1,27 +1,46 @@
-<p-card header="Resend OTP">
-    <ng-template #subtitle>
-        Didn't receive the code? We'll send it again.
-    </ng-template>
+<div class="auth-card">
+    <!-- Brand Header -->
+    <div class="auth-brand">
+        <div class="auth-brand-icon">
+            <i class="pi pi-bolt"></i>
+        </div>
+        <div class="auth-brand-name">FinConnect</div>
+        <div class="auth-brand-sub">Didn't receive the code? We'll send it again</div>
+    </div>
 
-    <form [formGroup]="resendOtpForm" (ngSubmit)="onSubmit()">
-        <div>
+    <div class="auth-divider"></div>
+
+    <!-- Form -->
+    <form [formGroup]="resendOtpForm" (ngSubmit)="onSubmit()" class="auth-form">
+
+        <!-- Email -->
+        <div class="auth-form-group">
+            <label for="email">
+                <i class="pi pi-envelope form-label-icon"></i>
+                Email Address
+            </label>
             <p-floatlabel>
                 <input pInputText id="email" formControlName="email" type="email" />
-                <label for="email">Email address</label>
+                <label for="email">Enter your email address</label>
             </p-floatlabel>
             <div *ngIf="resendOtpForm.get('email')?.invalid && resendOtpForm.get('email')?.touched">
-                <small *ngIf="resendOtpForm.get('email')?.hasError('required')">Email is required.</small>
-                <small *ngIf="resendOtpForm.get('email')?.hasError('email')">Invalid email format.</small>
+                <small class="field-error" *ngIf="resendOtpForm.get('email')?.hasError('required')">
+                    <i class="pi pi-exclamation-circle"></i> Email is required.
+                </small>
+                <small class="field-error" *ngIf="resendOtpForm.get('email')?.hasError('email')">
+                    <i class="pi pi-exclamation-circle"></i> Invalid email format.
+                </small>
             </div>
         </div>
 
+        <!-- Submit -->
         <app-loading [loading]="isLoading()" label="Resend OTP" icon="pi pi-send"
-            [disabled]="resendOtpForm.invalid || isLoading()"></app-loading>
+            [disabled]="resendOtpForm.invalid || isLoading()">
+        </app-loading>
     </form>
 
-    <ng-template #footer>
-        <div>
-            <a routerLink="/login">Back to Login</a>
-        </div>
-    </ng-template>
-</p-card>
+    <!-- Footer Links -->
+    <div class="auth-footer">
+        <a routerLink="/login"><strong>← Back to Login</strong></a>
+    </div>
+</div>

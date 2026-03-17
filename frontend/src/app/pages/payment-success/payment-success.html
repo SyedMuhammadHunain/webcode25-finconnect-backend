@@ -1,22 +1,34 @@
-<div class="page-center">
-    <p-card class="status-card">
-        <ng-template #header>
-            <div class="status-icon success-icon">
-                <i class="pi pi-check-circle"></i>
-            </div>
-        </ng-template>
+<div class="status-page">
+    <div class="status-card">
+        <!-- Success Icon -->
+        <div class="status-icon-wrap status-success-wrap">
+            <div class="status-icon-ring"></div>
+            <i class="pi pi-check status-icon"></i>
+        </div>
 
-        <ng-template #title>Payment Successful!</ng-template>
-        <ng-template #subtitle>Thank you for subscribing. Your plan is now active.</ng-template>
+        <!-- Content -->
+        <div class="status-content">
+            <h2 class="status-title">Payment Successful!</h2>
+            <p class="status-subtitle">
+                Thank you for subscribing to FinConnect.<br>
+                Your plan is now active and ready to use.
+            </p>
 
-        <ng-template #footer>
-            <div class="status-actions">
-                <p-button label="Go to Dashboard" icon="pi pi-home" (onClick)="goToDashboard()">
-                </p-button>
-                <p-button label="View Subscription" icon="pi pi-star" [outlined]="true" severity="secondary"
-                    (onClick)="goToSubscription()">
-                </p-button>
+            <!-- Info Box -->
+            <div class="status-info-box">
+                <i class="pi pi-info-circle"></i>
+                <span>A confirmation email has been sent to your inbox.</span>
             </div>
-        </ng-template>
-    </p-card>
+        </div>
+
+        <!-- Actions -->
+        <div class="status-actions">
+            <p-button label="Go to Dashboard" icon="pi pi-home" (onClick)="goToDashboard()"
+                styleClass="status-btn-primary">
+            </p-button>
+            <p-button label="View Subscription" icon="pi pi-star" [outlined]="true" (onClick)="goToSubscription()"
+                styleClass="status-btn-ghost">
+            </p-button>
+        </div>
+    </div>
 </div>

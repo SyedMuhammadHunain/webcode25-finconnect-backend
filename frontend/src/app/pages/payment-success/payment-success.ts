@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
     standalone: true,
     imports: [CommonModule, CardModule, ButtonModule],
     templateUrl: './payment-success.html',
+    styleUrl: './payment-success.css',
 })
 export class PaymentSuccess implements OnInit {
     constructor(private router: Router) { }

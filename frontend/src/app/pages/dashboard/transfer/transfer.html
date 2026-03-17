@@ -1,46 +1,83 @@
-<div class="transfer-container" style="max-width: 400px; padding: 1rem;">
-  <h2>Transfer Funds</h2>
+<div class="transfer-page">
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <h2 class="page-title">Transfer Funds</h2>
+      <p class="page-subtitle">Send money securely between accounts</p>
+    </div>
+    <div class="badge badge-success">
+      <i class="pi pi-shield" style="font-size: 9px;"></i>
+      Secure
+    </div>
+  </div>
 
-  <form [formGroup]="transferForm" (ngSubmit)="onSubmit()" class="flex flex-column gap-3">
-    <div class="flex flex-column gap-2" style="margin-bottom: 1rem;">
-      <label for="sourceAccountId">Source Account ID</label>
-      <input 
-        pInputText 
-        id="sourceAccountId" 
-        formControlName="sourceAccountId" 
-        style="width: 100%"
-        placeholder="Enter Source Account" />
+  <!-- Transfer Card -->
+  <div class="transfer-card">
+    <!-- Card Header -->
+    <div class="transfer-card-header">
+      <div class="transfer-icon">
+        <i class="pi pi-send"></i>
+      </div>
+      <div>
+        <div class="transfer-card-title">New Transfer</div>
+        <div class="transfer-card-subtitle">Fill in the details below to initiate a transfer</div>
+      </div>
     </div>
 
-    <div class="flex flex-column gap-2" style="margin-bottom: 1rem;">
-      <label for="destinationAccountId">Destination Account ID</label>
-      <input 
-        pInputText 
-        id="destinationAccountId" 
-        formControlName="destinationAccountId" 
-        style="width: 100%"
-        placeholder="Enter Destination Account" />
-    </div>
+    <div class="transfer-divider"></div>
 
-    <div class="flex flex-column gap-2" style="margin-bottom: 2rem;">
-      <label for="amount">Amount</label>
-      <p-inputNumber 
-        id="amount" 
-        formControlName="amount" 
-        mode="currency" 
-        currency="USD" 
-        locale="en-US"
-        [min]="0.01"
-        styleClass="w-full">
-      </p-inputNumber>
-    </div>
+    <!-- Form -->
+    <form [formGroup]="transferForm" (ngSubmit)="onSubmit()" class="transfer-form">
 
-    <p-button 
-      type="submit" 
-      [disabled]="transferForm.invalid || isSubmitting" 
-      [loading]="isSubmitting"
-      label="Transfer"
-      styleClass="w-full">
-    </p-button>
-  </form>
+      <!-- Source Account -->
+      <div class="form-group">
+        <label for="sourceAccountId">
+          <i class="pi pi-arrow-circle-up form-label-icon"></i>
+          Source Account ID
+        </label>
+        <div class="input-wrapper">
+          <input pInputText id="sourceAccountId" formControlName="sourceAccountId" type="text"
+            placeholder="e.g. ACC-00123" />
+        </div>
+      </div>
+
+      <!-- Destination Account -->
+      <div class="form-group">
+        <label for="destinationAccountId">
+          <i class="pi pi-arrow-circle-down form-label-icon"></i>
+          Destination Account ID
+        </label>
+        <div class="input-wrapper">
+          <input pInputText id="destinationAccountId" formControlName="destinationAccountId" type="text"
+            placeholder="e.g. ACC-00456" />
+        </div>
+      </div>
+
+      <!-- Amount -->
+      <div class="form-group">
+        <label for="amount">
+          <i class="pi pi-dollar form-label-icon"></i>
+          Amount (USD)
+        </label>
+        <div class="input-wrapper">
+          <p-inputNumber id="amount" formControlName="amount" mode="currency" currency="USD" locale="en-US" [min]="0.01"
+            styleClass="w-full">
+          </p-inputNumber>
+        </div>
+      </div>
+
+      <div class="transfer-divider"></div>
+
+      <!-- Notice -->
+      <div class="transfer-notice">
+        <i class="pi pi-info-circle"></i>
+        <span>Transfers are processed instantly. Please double-check account IDs before submitting.</span>
+      </div>
+
+      <!-- Submit -->
+      <p-button type="submit" [disabled]="transferForm.invalid || isSubmitting" [loading]="isSubmitting"
+        label="Transfer Now" icon="pi pi-send" styleClass="transfer-submit-btn">
+      </p-button>
+    </form>
+  </div>
 </div>

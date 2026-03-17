@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
   standalone: true,
   imports: [CommonModule, CardModule, ButtonModule],
   templateUrl: './payment-cancelled.html',
+  styleUrl: './payment-cancelled.css',
 })
 export class PaymentCancelled {
   constructor(private router: Router) { }
