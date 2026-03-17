@@ -13,8 +13,7 @@ import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { FloatLabel } from 'primeng/floatlabel';
 import { Loading } from '../../../shared/components/loading/loading';
-import { ErrorComponent } from '../../../shared/components/messages/error/error';
-import { SuccessComponent } from '../../../shared/components/messages/success/success';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-forgot-password',
@@ -27,9 +26,7 @@ import { SuccessComponent } from '../../../shared/components/messages/success/su
     InputTextModule,
     ButtonModule,
     FloatLabel,
-    Loading,
-    ErrorComponent,
-    SuccessComponent
+    Loading
   ],
   templateUrl: './forgot-password.html',
   styleUrl: './forgot-password.css',
@@ -37,14 +34,13 @@ import { SuccessComponent } from '../../../shared/components/messages/success/su
 export class ForgotPassword implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
+  private messageService = inject(MessageService);
   private destroy$ = new Subject<void>();
 
   forgotPasswordForm!: FormGroup;
 
   // Signals for robust state management
   isLoading = signal<boolean>(false);
-  errorMessage = signal<string | null>(null);
-  successMessage = signal<string | null>(null);
 
   ngOnInit(): void {
     // Initialize standard reactive form with appropriate validations
@@ -60,8 +56,6 @@ export class ForgotPassword implements OnInit, OnDestroy {
     }
 
     this.isLoading.set(true);
-    this.errorMessage.set(null);
-    this.successMessage.set(null);
 
     // Communicate with auth service using proper unsubscription via RxJS takeUntil
     this.authService.forgotPassword(this.forgotPasswordForm.value)
@@ -69,12 +63,11 @@ export class ForgotPassword implements OnInit, OnDestroy {
       .subscribe({
         next: (response: AuthResponse) => {
           this.isLoading.set(false);
-          this.successMessage.set(response.message || 'Password reset link sent to your email.');
+          this.messageService.add({ severity: 'success', summary: 'Check Your Inbox', detail: response.message || 'Password reset link sent to your email.' });
           this.forgotPasswordForm.reset();
         },
         error: (err: Error) => {
           this.isLoading.set(false);
-          this.errorMessage.set(err.message || 'Failed to send password reset link. Please try again.');
         }
       });
   }

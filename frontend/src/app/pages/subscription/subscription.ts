@@ -5,8 +5,7 @@ import { SubscriptionService } from '../../core/services/subscription.service';
 import { SubscriptionType, SubscriptionData } from '../../core/models/subscription.model';
 import { CardModule } from 'primeng/card';
 import { Loading } from '../../shared/components/loading/loading';
-import { ErrorComponent } from '../../shared/components/messages/error/error';
-import { SuccessComponent } from '../../shared/components/messages/success/success';
+import { MessageService } from 'primeng/api';
 
 interface Plan {
   type: SubscriptionType;
@@ -19,17 +18,16 @@ interface Plan {
 @Component({
   selector: 'app-subscription',
   standalone: true,
-  imports: [CommonModule, CardModule, Loading, ErrorComponent, SuccessComponent],
+  imports: [CommonModule, CardModule, Loading],
   templateUrl: './subscription.html',
   styleUrl: './subscription.css',
 })
 export class Subscription {
   private subscriptionService = inject(SubscriptionService);
   private router = inject(Router);
+  private messageService = inject(MessageService);
 
   isLoading = signal<boolean>(false);
-  errorMessage = signal<string | null>(null);
-  successMessage = signal<string | null>(null);
 
   plans: Plan[] = [
     {
@@ -57,8 +55,6 @@ export class Subscription {
 
   onSubscribe(plan: Plan): void {
     this.isLoading.set(true);
-    this.errorMessage.set(null);
-    this.successMessage.set(null);
 
     const data: SubscriptionData = {
       subscriptionType: plan.type,
@@ -68,7 +64,7 @@ export class Subscription {
     this.subscriptionService.subscribe(data).subscribe({
       next: (response) => {
         this.isLoading.set(false);
-        this.successMessage.set(response.message);
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: response.message });
 
         if (response.url) {
           window.location.href = response.url;
@@ -79,7 +75,6 @@ export class Subscription {
       },
       error: (err) => {
         this.isLoading.set(false);
-        this.errorMessage.set(err.message || 'Subscription failed. Please try again.');
       }
     });
   }

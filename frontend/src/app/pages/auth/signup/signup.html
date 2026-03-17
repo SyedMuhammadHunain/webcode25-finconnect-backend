@@ -3,9 +3,6 @@
         Sign up to get started
     </ng-template>
 
-    <app-error [text]="errorMessage()"></app-error>
-    <app-success [text]="successMessage()"></app-success>
-
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <div>
             <p-floatlabel>

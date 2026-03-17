@@ -1,3 +1,4 @@
+import { TableModule } from 'primeng/table';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FintechService } from '../../../core/services/fintech.service';
@@ -5,40 +6,9 @@ import { FintechService } from '../../../core/services/fintech.service';
 @Component({
   selector: 'app-invoices',
   standalone: true,
-  imports: [CommonModule],
-  template: `
-    <h2>Invoices</h2>
-    <div *ngIf="loading">Loading invoices...</div>
-    <div *ngIf="error" class="error">{{ error }}</div>
-    
-    <table *ngIf="invoices.length > 0" class="invoices-table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Invoice ID</th>
-                <th>Amount</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let inv of invoices">
-                <td>{{ inv.date | date }}</td>
-                <td>{{ inv.id || 'N/A' }}</td>
-                <td>{{ inv.amount | currency }}</td>
-                <td>{{ inv.status || 'Pending' }}</td>
-            </tr>
-        </tbody>
-    </table>
-    
-    <div *ngIf="!loading && invoices.length === 0">
-        No invoices found.
-    </div>
-  `,
-  styles: [`
-    .invoices-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    .invoices-table th, .invoices-table td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
-    .error { color: red; }
-  `]
+  imports: [CommonModule, TableModule],
+  templateUrl: './invoices.html',
+  styleUrl: './invoices.css',
 })
 export class InvoicesComponent implements OnInit {
   invoices: any[] = [];

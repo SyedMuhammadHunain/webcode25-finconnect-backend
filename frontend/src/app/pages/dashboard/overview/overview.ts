@@ -6,20 +6,8 @@ import { FintechService } from '../../../core/services/fintech.service';
   selector: 'app-overview',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <h2>Dashboard Overview</h2>
-    <div *ngIf="balance !== null">
-        <h3>Current Balance</h3>
-        <p class="balance">{{ balance | currency }}</p>
-    </div>
-    <div *ngIf="error">
-        <p class="error">{{ error }}</p>
-    </div>
-  `,
-  styles: [`
-    .balance { font-size: 2em; font-weight: bold; color: #2ecc71; }
-    .error { color: red; }
-  `]
+  templateUrl: './overview.html',
+  styleUrl: './overview.css'
 })
 export class OverviewComponent implements OnInit {
   balance: number | null = null;

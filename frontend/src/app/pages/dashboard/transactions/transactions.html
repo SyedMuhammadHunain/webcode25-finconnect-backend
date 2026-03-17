@@ -1,0 +1,33 @@
+<div class="card">
+    <h2>Transactions</h2>
+    <div *ngIf="loading">Loading transactions...</div>
+    
+    <p-table *ngIf="transactions.length > 0" [value]="transactions" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-tx>
+            <tr>
+                <td>{{ tx.date | date }}</td>
+                <td>{{ tx.description || tx.type || 'Transaction' }}</td>
+                <td [class.negative]="tx.amount < 0">{{ tx.amount | currency }}</td>
+                <td>{{ tx.status || 'Completed' }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    
+    <div *ngIf="!loading && transactions.length === 0">
+        No transactions found.
+    </div>
+
+    <div class="flex align-items-center justify-content-between mt-3" *ngIf="transactions.length > 0">
+        <p-button label="Previous" icon="pi pi-chevron-left" (click)="loadPage(page - 1)" [disabled]="page === 1"></p-button>
+        <span class="font-bold">Page {{ page }}</span>
+        <p-button label="Next" icon="pi pi-chevron-right" iconPos="right" (click)="loadPage(page + 1)"></p-button>
+    </div>
+</div>

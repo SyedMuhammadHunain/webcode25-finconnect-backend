@@ -3,8 +3,6 @@
         Sign in to your account
     </ng-template>
 
-    <app-error [text]="errorMessage()"></app-error>
-
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div>
             <p-floatlabel>

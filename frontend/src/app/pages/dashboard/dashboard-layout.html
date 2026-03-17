@@ -1,0 +1,17 @@
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <nav>
+            <ul>
+                <li><a routerLink="/dashboard" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">Overview</a></li>
+                <li><a routerLink="/dashboard/transactions" routerLinkActive="active">Transactions</a></li>
+                <li><a routerLink="/dashboard/invoices" routerLinkActive="active">Invoices</a></li>
+                <li><a routerLink="/dashboard/transfer" routerLinkActive="active">Transfer</a></li>
+                <li><a routerLink="/subscription" routerLinkActive="active">Subscription</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main class="content">
+        <router-outlet></router-outlet>
+    </main>
+</div>

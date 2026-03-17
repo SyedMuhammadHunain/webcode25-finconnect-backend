@@ -4,11 +4,6 @@
         <p>Select the best option for your business needs</p>
     </div>
 
-    <div class="messages">
-        <app-error [text]="errorMessage()"></app-error>
-        <app-success [text]="successMessage()"></app-success>
-    </div>
-
     <div class="plans-grid">
         <p-card *ngFor="let plan of plans" [header]="plan.label" class="plan-card"
             [class.premium-card]="plan.type === 'premium'">

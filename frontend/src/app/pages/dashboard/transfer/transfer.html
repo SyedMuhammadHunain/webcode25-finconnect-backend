@@ -1,0 +1,46 @@
+<div class="transfer-container" style="max-width: 400px; padding: 1rem;">
+  <h2>Transfer Funds</h2>
+
+  <form [formGroup]="transferForm" (ngSubmit)="onSubmit()" class="flex flex-column gap-3">
+    <div class="flex flex-column gap-2" style="margin-bottom: 1rem;">
+      <label for="sourceAccountId">Source Account ID</label>
+      <input 
+        pInputText 
+        id="sourceAccountId" 
+        formControlName="sourceAccountId" 
+        style="width: 100%"
+        placeholder="Enter Source Account" />
+    </div>
+
+    <div class="flex flex-column gap-2" style="margin-bottom: 1rem;">
+      <label for="destinationAccountId">Destination Account ID</label>
+      <input 
+        pInputText 
+        id="destinationAccountId" 
+        formControlName="destinationAccountId" 
+        style="width: 100%"
+        placeholder="Enter Destination Account" />
+    </div>
+
+    <div class="flex flex-column gap-2" style="margin-bottom: 2rem;">
+      <label for="amount">Amount</label>
+      <p-inputNumber 
+        id="amount" 
+        formControlName="amount" 
+        mode="currency" 
+        currency="USD" 
+        locale="en-US"
+        [min]="0.01"
+        styleClass="w-full">
+      </p-inputNumber>
+    </div>
+
+    <p-button 
+      type="submit" 
+      [disabled]="transferForm.invalid || isSubmitting" 
+      [loading]="isSubmitting"
+      label="Transfer"
+      styleClass="w-full">
+    </p-button>
+  </form>
+</div>

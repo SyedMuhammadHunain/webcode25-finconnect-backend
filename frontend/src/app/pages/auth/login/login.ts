@@ -13,7 +13,7 @@ import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { FloatLabel } from 'primeng/floatlabel';
 import { Loading } from '../../../shared/components/loading/loading';
-import { ErrorComponent } from '../../../shared/components/messages/error/error';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -27,8 +27,7 @@ import { ErrorComponent } from '../../../shared/components/messages/error/error'
     PasswordModule,
     ButtonModule,
     FloatLabel,
-    Loading,
-    ErrorComponent
+    Loading
   ],
   templateUrl: './login.html',
   styleUrl: './login.css',
@@ -43,7 +42,6 @@ export class Login implements OnInit, OnDestroy {
 
   // Signals for robust state management
   isLoading = signal<boolean>(false);
-  errorMessage = signal<string | null>(null);
 
   ngOnInit(): void {
     // Initialize standard reactive form with appropriate validations
@@ -61,7 +59,6 @@ export class Login implements OnInit, OnDestroy {
     }
 
     this.isLoading.set(true);
-    this.errorMessage.set(null);
 
     // Communicate with auth service using proper unsubscription via RxJS takeUntil
     this.authService.login(this.loginForm.value)
@@ -73,7 +70,6 @@ export class Login implements OnInit, OnDestroy {
         },
         error: (err) => {
           this.isLoading.set(false);
-          this.errorMessage.set(err.message || 'Login failed. Please check your credentials.');
         }
       });
   }

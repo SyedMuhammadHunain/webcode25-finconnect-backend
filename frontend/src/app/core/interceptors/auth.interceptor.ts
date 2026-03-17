@@ -23,22 +23,41 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
     return next(handledReq).pipe(
         catchError((error: HttpErrorResponse) => {
-            let errorMsg = 'An unknown error occurred!';
+            let errorMsg = 'An unexpected error occurred. Please try again.';
+            
+            // For developers: log the full error deeply
+            console.error('[DEV LOG] Backend Request Failed:', {
+                url: req.url,
+                status: error.status,
+                message: error.message,
+                detailedError: error.error
+            });
             
             if (error.error instanceof ErrorEvent) {
-                // Client-side error
-                errorMsg = `Error: ${error.error.message}`;
+                // Client-side / network error
+                errorMsg = 'A network error occurred. Check your connection.';
             } else {
-                // Server-side error
-                errorMsg = error.error?.message || `Error Code: ${error.status}\nMessage: ${error.message}`;
-                
+                // Server-side error mapping
                 if (error.status === 401) {
-                    errorMsg = 'Unauthorized: Please log in again.';
-                    // Potentially trigger logout/redirect here
+                    errorMsg = 'Your session has expired or is invalid. Please log in again.';
+                } else if (error.status >= 500) {
+                    errorMsg = 'Our servers are experiencing issues. Please try again later.';
+                } else if (error.status === 400 || error.status === 404) {
+                    errorMsg = error.error?.message || 'Invalid request. Please check your data.';
                 }
             }
             
-            messageService.add({ severity: 'error', summary: 'Error', detail: errorMsg });
+            // Extract a cleaner string if it's an array or object
+            if (Array.isArray(errorMsg)) {
+                errorMsg = errorMsg[0];
+            }
+            
+            messageService.add({ 
+                severity: 'error', 
+                summary: 'Action Failed', 
+                detail: typeof errorMsg === 'string' ? errorMsg : 'An error occurred.',
+                life: 5000 
+            });
             
             return throwError(() => error);
         })

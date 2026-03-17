@@ -13,8 +13,7 @@ import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { FloatLabel } from 'primeng/floatlabel';
 import { Loading } from '../../../shared/components/loading/loading';
-import { ErrorComponent } from '../../../shared/components/messages/error/error';
-import { SuccessComponent } from '../../../shared/components/messages/success/success';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-signup',
@@ -28,9 +27,7 @@ import { SuccessComponent } from '../../../shared/components/messages/success/su
     PasswordModule,
     ButtonModule,
     FloatLabel,
-    Loading,
-    ErrorComponent,
-    SuccessComponent
+    Loading
   ],
   templateUrl: './signup.html',
   styleUrl: './signup.css',
@@ -39,14 +36,13 @@ export class Signup implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private messageService = inject(MessageService);
   private destroy$ = new Subject<void>();
 
   signupForm!: FormGroup;
 
   // Signals for robust state management
   isLoading = signal<boolean>(false);
-  errorMessage = signal<string | null>(null);
-  successMessage = signal<string | null>(null);
 
   ngOnInit(): void {
     // Initialize standard reactive form with appropriate validations
@@ -64,8 +60,6 @@ export class Signup implements OnInit, OnDestroy {
     }
 
     this.isLoading.set(true);
-    this.errorMessage.set(null);
-    this.successMessage.set(null);
 
     // Communicate with auth service using proper unsubscription via RxJS takeUntil
     this.authService.register(this.signupForm.value)
@@ -73,14 +67,13 @@ export class Signup implements OnInit, OnDestroy {
       .subscribe({
         next: (response) => {
           this.isLoading.set(false);
-          this.successMessage.set(response.message || 'Signup successful! Please login.');
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: response.message || 'Signup successful! Please login.' });
           this.signupForm.reset();
           // After success, navigate to the login page
           this.router.navigate(['/login']);
         },
         error: (err) => {
           this.isLoading.set(false);
-          this.errorMessage.set(err.message || 'Signup failed. Please try again.');
         }
       });
   }

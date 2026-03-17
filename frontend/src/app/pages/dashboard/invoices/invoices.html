@@ -1,0 +1,27 @@
+<div class="card">
+    <h2>Invoices</h2>
+    <div *ngIf="loading">Loading invoices...</div>
+    
+    <p-table *ngIf="invoices.length > 0" [value]="invoices" responsiveLayout="scroll" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Date</th>
+                <th>Invoice ID</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-inv>
+            <tr>
+                <td>{{ inv.date | date }}</td>
+                <td>{{ inv.id || 'N/A' }}</td>
+                <td>{{ inv.amount | currency }}</td>
+                <td>{{ inv.status || 'Pending' }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    
+    <div *ngIf="!loading && invoices.length === 0">
+        No invoices found.
+    </div>
+</div>
