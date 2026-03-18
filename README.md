@@ -1,7 +1,5 @@
 <div align="center">
   <img src="banner.png" alt="FinConnect Logo" width="100%" />
-  <h1>FinConnect Platform</h1>
-  <br/>
   
   <a href="https://git.io/typing-svg">
     <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=30&pause=1000&color=ffffff&center=true&vCenter=true&width=800&lines=FinConnect+Full-Stack+Portal;Powered+by+Angular+21,+NestJS+11+%26+MongoDB;Secure,+Scalable,+Fintech+Platform" alt="Typing SVG" />
