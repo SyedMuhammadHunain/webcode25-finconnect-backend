@@ -259,21 +259,22 @@ export class EmailService {
     return true;
   }
 
-  async resendOtp(resendOtpDto: ResendOtpDto) {
+  async resendOtp(resendOtpDto: ResendOtpDto): Promise<{ message: string }> {
     const { otp } = this.generateOtpCode();
     const { email } = resendOtpDto;
 
-    // Update or create OTP document
+    // Update or create OTP document (upsert: creates if not found, updates if exists)
     await this.authCollections.findOneAndUpdate(
       { email },
       {
         code: otp,
         createdAt: new Date(),
-        expiresAt: new Date(Date.now() + 600000),
+        expiresAt: new Date(Date.now() + 600000), // 10 minutes
       },
       { upsert: true, new: true },
     );
 
     await this.emailSend(otp, email);
+    return { message: 'A new OTP has been sent to your email address.' };
   }
 }

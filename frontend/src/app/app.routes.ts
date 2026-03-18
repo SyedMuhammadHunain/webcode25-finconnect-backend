@@ -11,6 +11,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/auth/login/login').then(m => m.Login)
     },
     {
+        path: 'login-verified',
+        loadComponent: () => import('./pages/auth/login-verified/login-verified').then(m => m.LoginVerified)
+    },
+    {
         path: 'forgot-password',
         loadComponent: () => import('./pages/auth/forgot-password/forgot-password').then(m => m.ForgotPassword)
     },

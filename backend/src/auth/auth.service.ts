@@ -77,6 +77,43 @@ export class AuthService {
     return { accessToken };
   }
 
+  /**
+   * Login for already-verified users — no OTP required.
+   * Only works if the user has previously completed OTP verification (isVerified === true).
+   */
+  async loginVerified(loginVerifiedDto: { email: string; password: string }): Promise<{ accessToken: string }> {
+    const { email, password } = loginVerifiedDto;
+
+    // 1. Find the user
+    const foundUser = await this.userModel.findOne({ email }).exec();
+
+    if (!foundUser) {
+      throw new UnauthorizedException(
+        'Authentication failed: No account found with this email.',
+      );
+    }
+
+    // 2. Verify password
+    const isMatch = await bcrypt.compare(password, foundUser.password);
+    if (!isMatch) {
+      throw new UnauthorizedException(
+        'Authentication failed: Invalid email or password.',
+      );
+    }
+
+    // 3. Check if user has been previously verified via OTP
+    if (!foundUser.isVerified) {
+      throw new UnauthorizedException(
+        'Account not yet verified. Please sign in with your OTP code first to verify your account.',
+      );
+    }
+
+    // 4. Generate and return an access token
+    const accessToken = await this.generateToken(foundUser);
+    return { accessToken };
+  }
+
+
   async generateToken(user: UserDocument): Promise<string> {
     const payload = {
       sub: String(user._id),

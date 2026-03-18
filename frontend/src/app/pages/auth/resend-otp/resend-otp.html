@@ -10,37 +10,42 @@
 
     <div class="auth-divider"></div>
 
+    <!-- Success State -->
+    <div *ngIf="successMessage" class="success-banner">
+        <i class="pi pi-check-circle"></i>
+        <span>{{ successMessage }}</span>
+    </div>
+
     <!-- Form -->
-    <form [formGroup]="resendOtpForm" (ngSubmit)="onSubmit()" class="auth-form">
+    <form [formGroup]="resendOtpForm" (ngSubmit)="onSubmit()" class="auth-form" *ngIf="!successMessage">
 
         <!-- Email -->
         <div class="auth-form-group">
-            <label for="email">
+            <label for="ro-email">
                 <i class="pi pi-envelope form-label-icon"></i>
                 Email Address
             </label>
             <p-floatlabel>
-                <input pInputText id="email" formControlName="email" type="email" />
-                <label for="email">Enter your email address</label>
+                <input pInputText id="ro-email" formControlName="email" type="email" />
+                <label for="ro-email">Enter your email address</label>
             </p-floatlabel>
             <div *ngIf="resendOtpForm.get('email')?.invalid && resendOtpForm.get('email')?.touched">
-                <small class="field-error" *ngIf="resendOtpForm.get('email')?.hasError('required')">
-                    <i class="pi pi-exclamation-circle"></i> Email is required.
-                </small>
-                <small class="field-error" *ngIf="resendOtpForm.get('email')?.hasError('email')">
-                    <i class="pi pi-exclamation-circle"></i> Invalid email format.
-                </small>
+                <p-message severity="error" *ngIf="resendOtpForm.get('email')?.hasError('required')"
+                    text="Email is required." styleClass="field-error-msg" />
+                <p-message severity="error" *ngIf="resendOtpForm.get('email')?.hasError('email')"
+                    text="Invalid email format." styleClass="field-error-msg" />
             </div>
         </div>
 
         <!-- Submit -->
-        <app-loading [loading]="isLoading()" label="Resend OTP" icon="pi pi-send"
+        <app-loading [loading]="isLoading()" label="Resend OTP Code" icon="pi pi-send"
             [disabled]="resendOtpForm.invalid || isLoading()">
         </app-loading>
     </form>
 
     <!-- Footer Links -->
     <div class="auth-footer">
-        <a routerLink="/login"><strong>← Back to Login</strong></a>
+        <a routerLink="/login">← Back to Login with OTP</a>
+        <a routerLink="/login-verified">Sign in without OTP</a>
     </div>
 </div>

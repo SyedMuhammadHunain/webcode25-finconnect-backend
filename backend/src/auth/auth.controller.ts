@@ -5,6 +5,7 @@ import { SignUpDto } from 'src/dtos/signup.dto';
 import { UserService } from 'src/user/user.service';
 import { EmailService } from 'src/email/email.service';
 import { LoginDto } from 'src/dtos/login.dto';
+import { LoginVerifiedDto } from 'src/dtos/login-verified.dto';
 import { Public } from 'src/common/decorators/public.decorator';
 import { ForgotPasswordDto } from 'src/dtos/forgot-password.dto';
 import { ResendOtpDto } from 'src/dtos/resend-otp.dto';
@@ -16,7 +17,7 @@ export class AuthController {
     private readonly authService: AuthService,
     private readonly userService: UserService,
     private readonly emailService: EmailService,
-  ) {}
+  ) { }
 
   @Public()
   @Post('register')
@@ -43,9 +44,16 @@ export class AuthController {
     return this.authService.forgotPassword(forgotPasswordDto);
   }
 
+  @Public()
   @Post('/resend-otp')
   async resendOtp(@Body() resendOtpDto: ResendOtpDto) {
     return this.emailService.resendOtp(resendOtpDto);
+  }
+
+  @Public()
+  @Post('login-verified')
+  async loginVerified(@Body() loginDto: LoginVerifiedDto): Promise<{ accessToken: string }> {
+    return this.authService.loginVerified(loginDto);
   }
 
   @Patch('update-password')

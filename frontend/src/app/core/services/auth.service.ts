@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { handleError } from '../../shared/error-handling.shared';
-import { RegisterData, LoginData, ForgotPasswordData, ResendOtpData, UpdatePasswordData, AuthResponse } from '../models/auth.model';
+import { RegisterData, LoginData, LoginVerifiedData, ForgotPasswordData, ResendOtpData, UpdatePasswordData, AuthResponse } from '../models/auth.model';
 import { environment } from '../../../environments/environment';
 import { LocalStorageService } from './local-storage.service';
 
@@ -25,6 +25,18 @@ export class AuthService {
 
     login(data: LoginData): Observable<AuthResponse> {
         return this.http.post<AuthResponse>(`${this.apiUrl}/login`, data)
+            .pipe(
+                tap(response => {
+                    if (response.accessToken) {
+                        this.localStorageService.setItem('accessToken', response.accessToken);
+                    }
+                }),
+                catchError(handleError)
+            );
+    }
+
+    loginVerified(data: LoginVerifiedData): Observable<AuthResponse> {
+        return this.http.post<AuthResponse>(`${this.apiUrl}/login-verified`, data)
             .pipe(
                 tap(response => {
                     if (response.accessToken) {

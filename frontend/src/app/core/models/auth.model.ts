@@ -11,6 +11,11 @@ export interface LoginData {
     code: string;
 }
 
+export interface LoginVerifiedData {
+    email: string;
+    password: string;
+}
+
 export interface ForgotPasswordData {
     email: string;
 }

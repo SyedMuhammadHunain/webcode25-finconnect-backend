@@ -7,11 +7,11 @@ import { AuthService } from '../../../core/services/auth.service';
 import { AuthResponse } from '../../../core/models/auth.model';
 import { RouterLink } from '@angular/router';
 
-import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { FloatLabel } from 'primeng/floatlabel';
+import { ToastModule } from 'primeng/toast';
 import { Loading } from '../../../shared/components/loading/loading';
 import { MessageService } from 'primeng/api';
 
@@ -22,11 +22,12 @@ import { MessageService } from 'primeng/api';
     CommonModule,
     ReactiveFormsModule,
     RouterLink,
-    CardModule,
     InputTextModule,
     ButtonModule,
+    MessageModule,
     FloatLabel,
-    Loading
+    ToastModule,
+    Loading,
   ],
   templateUrl: './resend-otp.html',
   styleUrl: './resend-otp.css',
@@ -38,12 +39,10 @@ export class ResendOtp implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   resendOtpForm!: FormGroup;
-
-  // Signals for robust state management
   isLoading = signal<boolean>(false);
+  successMessage: string | null = null;
 
   ngOnInit(): void {
-    // Initialize standard reactive form with appropriate validations
     this.resendOtpForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
     });
@@ -56,25 +55,29 @@ export class ResendOtp implements OnInit, OnDestroy {
     }
 
     this.isLoading.set(true);
+    this.successMessage = null;
 
-    // Communicate with auth service using proper unsubscription via RxJS takeUntil
     this.authService.resendOtp(this.resendOtpForm.value)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response: AuthResponse) => {
           this.isLoading.set(false);
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: response.message || 'OTP resent successfully to your email.' });
+          this.successMessage = response.message || 'OTP sent successfully! Check your inbox.';
+          this.messageService.add({
+            severity: 'success',
+            summary: 'OTP Sent',
+            detail: this.successMessage,
+            life: 5000
+          });
           this.resendOtpForm.reset();
         },
-        error: (err: Error) => {
+        error: () => {
           this.isLoading.set(false);
-          // Global interceptor handles the toast, no need for inline error logic here!
         }
       });
   }
 
   ngOnDestroy(): void {
-    // Notify all subscriptions to unsubscribe
     this.destroy$.next();
     this.destroy$.complete();
   }

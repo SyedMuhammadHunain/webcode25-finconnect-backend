@@ -12,6 +12,7 @@ import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { FloatLabel } from 'primeng/floatlabel';
+import { ToastModule } from 'primeng/toast';
 import { Loading } from '../../../shared/components/loading/loading';
 import { MessageService } from 'primeng/api';
 
@@ -26,7 +27,9 @@ import { MessageService } from 'primeng/api';
     InputTextModule,
     PasswordModule,
     ButtonModule,
+    MessageModule,
     FloatLabel,
+    ToastModule,
     Loading
   ],
   templateUrl: './login.html',

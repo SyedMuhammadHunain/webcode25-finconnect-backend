@@ -1,0 +1,76 @@
+<div class="auth-card">
+    <!-- Brand Header -->
+    <div class="auth-brand">
+        <div class="auth-brand-icon">
+            <i class="pi pi-bolt"></i>
+        </div>
+        <div class="auth-brand-name">FinConnect</div>
+        <div class="auth-brand-sub">Sign in to your verified account</div>
+    </div>
+
+    <!-- Verified badge info -->
+    <div class="verified-notice">
+        <i class="pi pi-check-circle"></i>
+        <span>Quick sign-in for verified accounts — no OTP required.</span>
+    </div>
+
+    <div class="auth-divider"></div>
+
+    <!-- Form -->
+    <form [formGroup]="loginVerifiedForm" (ngSubmit)="onSubmit()" class="auth-form">
+
+        <!-- Email -->
+        <div class="auth-form-group">
+            <label for="lv-email">
+                <i class="pi pi-envelope form-label-icon"></i>
+                Email Address
+            </label>
+            <p-floatlabel>
+                <input pInputText id="lv-email" formControlName="email" type="email" />
+                <label for="lv-email">Enter your email</label>
+            </p-floatlabel>
+            <div *ngIf="loginVerifiedForm.get('email')?.invalid && loginVerifiedForm.get('email')?.touched">
+                <p-message severity="error" *ngIf="loginVerifiedForm.get('email')?.hasError('required')"
+                    text="Email is required." styleClass="field-error-msg" />
+                <p-message severity="error" *ngIf="loginVerifiedForm.get('email')?.hasError('email')"
+                    text="Invalid email format." styleClass="field-error-msg" />
+            </div>
+        </div>
+
+        <!-- Password -->
+        <div class="auth-form-group">
+            <label for="lv-password">
+                <i class="pi pi-lock form-label-icon"></i>
+                Password
+            </label>
+            <p-floatlabel>
+                <p-password id="lv-password" formControlName="password" [feedback]="false" [toggleMask]="true">
+                </p-password>
+                <label for="lv-password">Enter your password</label>
+            </p-floatlabel>
+            <div *ngIf="loginVerifiedForm.get('password')?.invalid && loginVerifiedForm.get('password')?.touched">
+                <p-message severity="error" *ngIf="loginVerifiedForm.get('password')?.hasError('required')"
+                    text="Password is required." styleClass="field-error-msg" />
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <app-loading [loading]="isLoading()" label="Sign In" icon="pi pi-sign-in"
+            [disabled]="loginVerifiedForm.invalid || isLoading()">
+        </app-loading>
+    </form>
+
+    <!-- Footer Links -->
+    <div class="auth-footer">
+        <p-divider styleClass="auth-divider-comp" />
+        <div class="footer-links">
+            <a routerLink="/login">Sign in with OTP instead</a>
+            <span class="footer-sep">·</span>
+            <a routerLink="/forgot-password">Forgot password?</a>
+        </div>
+        <div class="footer-signup">
+            Don't have an account?
+            <a routerLink="/signup"><strong>Create one</strong></a>
+        </div>
+    </div>
+</div>
