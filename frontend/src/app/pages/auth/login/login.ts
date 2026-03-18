@@ -6,13 +6,11 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AuthService } from '../../../core/services/auth.service';
 
-import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { FloatLabel } from 'primeng/floatlabel';
-import { ToastModule } from 'primeng/toast';
 import { Loading } from '../../../shared/components/loading/loading';
 import { MessageService } from 'primeng/api';
 
@@ -23,13 +21,11 @@ import { MessageService } from 'primeng/api';
     CommonModule,
     ReactiveFormsModule,
     RouterLink,
-    CardModule,
     InputTextModule,
     PasswordModule,
     ButtonModule,
     MessageModule,
     FloatLabel,
-    ToastModule,
     Loading
   ],
   templateUrl: './login.html',
@@ -69,7 +65,7 @@ export class Login implements OnInit, OnDestroy {
       .subscribe({
         next: () => {
           this.isLoading.set(false);
-          this.router.navigate(['/subscription']);
+          this.router.navigate(['/dashboard']);
         },
         error: (err) => {
           this.isLoading.set(false);

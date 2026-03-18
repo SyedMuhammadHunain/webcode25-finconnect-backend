@@ -32,10 +32,10 @@
                 <tr>
                     <td class="col-date">
                         <i class="pi pi-calendar col-icon"></i>
-                        {{ inv.date | date:'MMM d, y' }}
+                        {{ inv.createdAt | date:'MMM d, y' }}
                     </td>
                     <td class="col-id">
-                        <span class="id-mono">{{ inv.id || 'N/A' }}</span>
+                        <span class="id-mono">{{ inv._id || 'N/A' }}</span>
                     </td>
                     <td>
                         <span class="amount-pill pill-positive">{{ inv.amount | currency }}</span>

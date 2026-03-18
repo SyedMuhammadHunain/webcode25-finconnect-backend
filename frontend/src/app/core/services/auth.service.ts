@@ -30,6 +30,12 @@ export class AuthService {
                     if (response.accessToken) {
                         this.localStorageService.setItem('accessToken', response.accessToken);
                     }
+                    if (response.username) {
+                        this.localStorageService.setItem('userName', response.username);
+                    }
+                    if (response.email) {
+                        this.localStorageService.setItem('userEmail', response.email);
+                    }
                 }),
                 catchError(handleError)
             );
@@ -41,6 +47,12 @@ export class AuthService {
                 tap(response => {
                     if (response.accessToken) {
                         this.localStorageService.setItem('accessToken', response.accessToken);
+                    }
+                    if (response.username) {
+                        this.localStorageService.setItem('userName', response.username);
+                    }
+                    if (response.email) {
+                        this.localStorageService.setItem('userEmail', response.email);
                     }
                 }),
                 catchError(handleError)

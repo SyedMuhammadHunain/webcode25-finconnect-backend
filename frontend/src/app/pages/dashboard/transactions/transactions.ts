@@ -17,28 +17,28 @@ export class TransactionsComponent implements OnInit {
   page = 1;
   pageSize = 10;
 
-  constructor(private fintechService: FintechService) {}
+  constructor(private fintechService: FintechService) { }
 
   ngOnInit(): void {
     this.loadPage(1);
   }
 
   loadPage(newPage: number) {
-      if (newPage < 1) return;
-      this.page = newPage;
-      this.loading = true;
-      this.error = null;
-      
-      this.fintechService.getTransactions(this.page, this.pageSize).subscribe({
-          next: (res: any) => {
-              this.loading = false;
-              // Adjust based on actual API
-              this.transactions = res.data || res.transactions || []; 
-          },
-          error: (err) => {
-              this.loading = false;
-              this.error = 'Failed to load transactions.';
-          }
-      });
+    if (newPage < 1) return;
+    this.page = newPage;
+    this.loading = true;
+    this.error = null;
+
+    this.fintechService.getTransactions(this.page, this.pageSize).subscribe({
+      next: (res: any) => {
+        this.loading = false;
+        // Adjust based on actual API
+        this.transactions = Array.isArray(res) ? res : (res.data || res.transactions || []);
+      },
+      error: (err) => {
+        this.loading = false;
+        this.error = 'Failed to load transactions.';
+      }
+    });
   }
 }

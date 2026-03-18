@@ -56,16 +56,53 @@
             </ul>
         </nav>
 
-        <!-- Sidebar Footer -->
+        <!-- Sidebar Footer / User Account -->
         <div class="sidebar-footer">
             <div class="sidebar-divider"></div>
-            <div class="user-card">
-                <div class="user-avatar">
-                    <i class="pi pi-user"></i>
+
+            <!-- User Popover -->
+            <div *ngIf="userPopoverOpen" class="popover-overlay" (click)="closeUserPopover()"></div>
+            <div style="position: relative;">
+                <div class="user-popover" *ngIf="userPopoverOpen">
+                    <div class="popover-header">
+                        <div class="popover-avatar">
+                            <i class="pi pi-user"></i>
+                        </div>
+                        <div class="popover-user-info">
+                            <span class="popover-name">{{ userName }}</span>
+                            <span class="popover-email">{{ userEmail || 'No email set' }}</span>
+                        </div>
+                    </div>
+                    <div class="popover-menu">
+                        <button class="popover-item">
+                            <i class="pi pi-user-edit"></i>
+                            <span>Edit Profile</span>
+                        </button>
+                        <button class="popover-item">
+                            <i class="pi pi-image"></i>
+                            <span>Change Avatar</span>
+                        </button>
+                        <button class="popover-item">
+                            <i class="pi pi-cog"></i>
+                            <span>Settings</span>
+                        </button>
+                        <div class="popover-divider"></div>
+                        <button class="popover-item danger" (click)="logout()">
+                            <i class="pi pi-sign-out"></i>
+                            <span>Log Out</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="user-info">
-                    <span class="user-name">My Account</span>
-                    <span class="user-role">Pro Member</span>
+
+                <div class="user-card" (click)="toggleUserPopover()">
+                    <div class="user-avatar">
+                        <i class="pi pi-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">{{ userName }}</span>
+                        <span class="user-role">Pro Member</span>
+                    </div>
+                    <i class="pi pi-chevron-up user-card-chevron"></i>
                 </div>
             </div>
         </div>

@@ -145,9 +145,9 @@
 }
 
 .pill-positive {
-    background-color: rgba(180, 255, 0, 0.1);
+    background-color: rgba(22, 163, 74, 0.1);
     color: var(--color-primary);
-    border: 1px solid rgba(180, 255, 0, 0.2);
+    border: 1px solid rgba(22, 163, 74, 0.2);
 }
 
 /* Status badges */
@@ -162,9 +162,9 @@
 }
 
 .status-paid {
-    background-color: rgba(180, 255, 0, 0.08);
+    background-color: rgba(22, 163, 74, 0.08);
     color: var(--color-primary);
-    border: 1px solid rgba(180, 255, 0, 0.2);
+    border: 1px solid rgba(22, 163, 74, 0.2);
 }
 
 .status-pending {
@@ -199,7 +199,7 @@
     width: 60px;
     height: 60px;
     background-color: var(--color-primary-subtle);
-    border: 1px solid rgba(180, 255, 0, 0.15);
+    border: 1px solid rgba(22, 163, 74, 0.15);
     border-radius: var(--radius-xl);
     display: flex;
     align-items: center;

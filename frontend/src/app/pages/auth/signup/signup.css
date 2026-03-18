@@ -4,17 +4,16 @@
     align-items: center;
     min-height: 100vh;
     background-color: var(--color-bg);
-    background-image:
-        radial-gradient(ellipse 60% 50% at 50% -10%, rgba(180, 255, 0, 0.1) 0%, transparent 70%);
+    background-image: radial-gradient(ellipse 60% 50% at 50% -10%, rgba(22, 163, 74, 0.06) 0%, transparent 70%);
     padding: var(--space-6);
 }
 
 /* ========================================
-   CARD WRAPPER
+   CARD
    ======================================== */
 .auth-card {
     width: 100%;
-    max-width: 480px;
+    max-width: 460px;
     background-color: var(--color-bg-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
@@ -37,7 +36,7 @@
 .auth-brand-icon {
     width: 52px;
     height: 52px;
-    background: linear-gradient(135deg, var(--color-primary) 0%, #8ecc00 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, #22c55e 100%);
     border-radius: var(--radius-lg);
     display: flex;
     align-items: center;
@@ -45,7 +44,7 @@
     font-size: 22px;
     color: var(--color-primary-contrast);
     margin-bottom: var(--space-4);
-    box-shadow: 0 0 30px rgba(180, 255, 0, 0.25);
+    box-shadow: 0 4px 20px rgba(22, 163, 74, 0.2);
 }
 
 .auth-brand-name {
@@ -66,7 +65,7 @@
 /* Divider */
 .auth-divider {
     height: 1px;
-    background: var(--color-border-subtle);
+    background: var(--color-border);
     margin: var(--space-4) 0 var(--space-6) 0;
 }
 
@@ -91,8 +90,28 @@
     color: var(--color-text-muted);
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: var(--space-2);
     margin-bottom: 0;
+}
+
+.otp-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.otp-row .resend-link {
+    font-size: var(--text-xs);
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity var(--transition-fast);
+}
+
+.otp-row .resend-link:hover {
+    opacity: 0.8;
+    text-decoration: underline;
 }
 
 .form-label-icon {
@@ -100,7 +119,7 @@
     color: var(--color-primary);
 }
 
-/* PrimeNG float label & input overrides */
+/* PrimeNG Overrides (Light) */
 ::ng-deep .auth-form .p-floatlabel {
     width: 100%;
 }
@@ -122,29 +141,15 @@
 ::ng-deep .auth-form .p-floatlabel .p-password-input:focus {
     border-color: var(--color-primary) !important;
     box-shadow: 0 0 0 3px var(--color-primary-glow) !important;
-    background-color: var(--color-bg-elevated);
+    background-color: var(--color-bg-input);
     outline: none;
 }
 
 ::ng-deep .auth-form .p-floatlabel label {
-    color: var(--color-text-muted);
+    color: var(--color-text-faint);
     font-size: var(--text-sm);
 }
 
-/* Password strength panel override */
-::ng-deep .p-password-panel {
-    background-color: var(--color-bg-card) !important;
-    border: 1px solid var(--color-border) !important;
-    border-radius: var(--radius-md) !important;
-    color: var(--color-text) !important;
-    box-shadow: var(--shadow-md) !important;
-}
-
-::ng-deep .p-password-panel .p-password-meter {
-    background-color: var(--color-bg-input) !important;
-}
-
-/* Validation message */
 .field-error {
     font-size: var(--text-xs);
     color: var(--color-error);
@@ -158,16 +163,15 @@
 /* Submit Button */
 ::ng-deep .auth-form app-loading button {
     width: 100%;
-    background: linear-gradient(135deg, var(--color-primary) 0%, #8ecc00 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, #22c55e 100%);
     color: var(--color-primary-contrast);
     border: none;
     font-weight: 700;
     font-size: var(--text-sm);
     padding: var(--space-4);
     border-radius: var(--radius-md);
-    transition: opacity var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-    letter-spacing: 0.02em;
     cursor: pointer;
+    transition: opacity var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 ::ng-deep .auth-form app-loading button:hover:not(:disabled) {
@@ -181,7 +185,9 @@
     cursor: not-allowed;
 }
 
-/* Footer links */
+/* ========================================
+   FOOTER
+   ======================================== */
 .auth-footer {
     margin-top: var(--space-6);
     display: flex;
@@ -190,21 +196,45 @@
     text-align: center;
 }
 
-.auth-footer a {
+.footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
     font-size: var(--text-sm);
+    flex-wrap: wrap;
+}
+
+.footer-links a {
     color: var(--color-text-muted);
     text-decoration: none;
     transition: color var(--transition-fast);
 }
 
-.auth-footer a:hover {
+.footer-links a:hover {
     color: var(--color-primary);
     text-decoration: underline;
 }
 
-.auth-footer a strong {
+.footer-sep {
+    color: var(--color-text-faint);
+}
+
+.footer-signup {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+}
+
+.footer-signup a {
     color: var(--color-primary);
+    text-decoration: none;
     font-weight: 600;
+    transition: opacity var(--transition-fast);
+}
+
+.footer-signup a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
 }
 
 /* ========================================

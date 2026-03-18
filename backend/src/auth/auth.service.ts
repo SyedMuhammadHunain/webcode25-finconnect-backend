@@ -29,7 +29,7 @@ export class AuthService {
     private readonly emailService: EmailService,
   ) { }
 
-  async login(loginDto: LoginDto): Promise<{ accessToken: string }> {
+  async login(loginDto: LoginDto): Promise<{ accessToken: string; username: string; email: string }> {
     const { email, password } = loginDto;
     const foundUser = await this.userModel.findOne({ email }).lean().exec();
 
@@ -74,14 +74,14 @@ export class AuthService {
     }
 
     const accessToken = await this.generateToken(updatedUser);
-    return { accessToken };
+    return { accessToken, username: updatedUser.username, email: updatedUser.email };
   }
 
   /**
    * Login for already-verified users — no OTP required.
    * Only works if the user has previously completed OTP verification (isVerified === true).
    */
-  async loginVerified(loginVerifiedDto: { email: string; password: string }): Promise<{ accessToken: string }> {
+  async loginVerified(loginVerifiedDto: { email: string; password: string }): Promise<{ accessToken: string; username: string; email: string }> {
     const { email, password } = loginVerifiedDto;
 
     // 1. Find the user
@@ -110,7 +110,7 @@ export class AuthService {
 
     // 4. Generate and return an access token
     const accessToken = await this.generateToken(foundUser);
-    return { accessToken };
+    return { accessToken, username: foundUser.username, email: foundUser.email };
   }
 
 
@@ -123,7 +123,7 @@ export class AuthService {
 
     return this.jwtService.sign(payload, {
       secret: process.env.JWT_SECRET,
-      expiresIn: process.env.JWT_EXPIRES_IN as string | undefined as number | undefined,
+      expiresIn: (process.env.JWT_EXPIRES_IN || '1d') as any,
     });
   }
 

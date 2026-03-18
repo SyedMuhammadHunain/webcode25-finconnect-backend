@@ -1,5 +1,5 @@
 /* ========================================
-   DASHBOARD LAYOUT
+   DASHBOARD LAYOUT — Light Theme
    ======================================== */
 .dashboard-layout {
     display: flex;
@@ -37,14 +37,14 @@
 .brand-icon {
     width: 36px;
     height: 36px;
-    background: linear-gradient(135deg, var(--color-primary) 0%, #8ecc00 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, #22c55e 100%);
     border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 16px;
     color: var(--color-primary-contrast);
-    box-shadow: 0 0 16px rgba(180, 255, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2);
     flex-shrink: 0;
 }
 
@@ -58,7 +58,7 @@
 
 .sidebar-divider {
     height: 1px;
-    background: var(--color-border-subtle);
+    background: var(--color-border);
     margin: 0 var(--space-6) var(--space-5);
 }
 
@@ -126,7 +126,7 @@
 }
 
 .sidebar-nav a.active {
-    background-color: rgba(180, 255, 0, 0.1);
+    background-color: rgba(22, 163, 74, 0.08);
     color: var(--color-primary);
     font-weight: 600;
 }
@@ -145,10 +145,12 @@
     height: 60%;
     background: var(--color-primary);
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    box-shadow: 0 0 8px var(--color-primary-glow);
+    box-shadow: 0 0 6px var(--color-primary-glow);
 }
 
-/* Sidebar Footer */
+/* ========================================
+   SIDEBAR FOOTER / USER CARD
+   ======================================== */
 .sidebar-footer {
     padding: 0 var(--space-4);
 }
@@ -161,6 +163,7 @@
     border-radius: var(--radius-md);
     cursor: pointer;
     transition: background-color var(--transition-fast);
+    position: relative;
 }
 
 .user-card:hover {
@@ -168,17 +171,24 @@
 }
 
 .user-avatar {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     background: linear-gradient(135deg, var(--color-bg-elevated), var(--color-border));
     border: 1.5px solid var(--color-border);
     border-radius: var(--radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
+    font-size: 14px;
     color: var(--color-text-muted);
     flex-shrink: 0;
+    overflow: hidden;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .user-info {
@@ -186,6 +196,7 @@
     flex-direction: column;
     gap: 1px;
     overflow: hidden;
+    flex: 1;
 }
 
 .user-name {
@@ -201,6 +212,128 @@
     font-size: var(--text-xs);
     color: var(--color-primary);
     font-weight: 500;
+}
+
+.user-card-chevron {
+    font-size: 11px;
+    color: var(--color-text-faint);
+    flex-shrink: 0;
+    transition: transform var(--transition-fast);
+}
+
+.user-card:hover .user-card-chevron {
+    color: var(--color-primary);
+}
+
+/* ========================================
+   USER POPOVER / SETTINGS PANEL
+   ======================================== */
+.user-popover {
+    position: absolute;
+    left: var(--space-4);
+    right: var(--space-4);
+    bottom: calc(100% + var(--space-2));
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    z-index: 200;
+    animation: slideIn 0.2s ease;
+    overflow: hidden;
+}
+
+.popover-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.popover-avatar {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--color-primary-subtle), var(--color-border));
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+}
+
+.popover-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.popover-name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.popover-email {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+}
+
+.popover-menu {
+    padding: var(--space-2) 0;
+}
+
+.popover-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    font-family: var(--font-primary);
+}
+
+.popover-item:hover {
+    background-color: var(--color-primary-subtle);
+    color: var(--color-primary);
+}
+
+.popover-item .pi {
+    font-size: 14px;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.popover-item.danger {
+    color: var(--color-error);
+}
+
+.popover-item.danger:hover {
+    background-color: var(--color-error-bg);
+    color: var(--color-error);
+}
+
+.popover-divider {
+    height: 1px;
+    background: var(--color-border);
+    margin: var(--space-2) 0;
+}
+
+/* Popover overlay */
+.popover-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 199;
 }
 
 /* ========================================
@@ -237,7 +370,7 @@
     height: 8px;
     background: var(--color-primary);
     border-radius: var(--radius-full);
-    box-shadow: 0 0 8px var(--color-primary-glow);
+    box-shadow: 0 0 6px var(--color-primary-glow);
     animation: pulseGlow 2s ease-in-out infinite;
 }
 
@@ -289,10 +422,9 @@
     right: 7px;
     width: 7px;
     height: 7px;
-    background: var(--color-primary);
+    background: var(--color-error);
     border-radius: var(--radius-full);
     border: 1.5px solid var(--color-bg-surface);
-    box-shadow: 0 0 6px var(--color-primary-glow);
 }
 
 .content-body {
@@ -364,7 +496,7 @@
         display: none;
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.25);
         z-index: 99;
     }
 

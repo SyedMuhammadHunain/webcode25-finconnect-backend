@@ -31,6 +31,8 @@ export interface UpdatePasswordData {
 export interface AuthResponse {
     message?: string;
     accessToken?: string;
+    username?: string;
+    email?: string;
     passwordResetToken?: string;
     passwordResetTokenExpiresAt?: Date;
     passwordResetLink?: string;
