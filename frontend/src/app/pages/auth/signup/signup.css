@@ -23,16 +23,6 @@
     animation: slideIn 0.4s ease;
 }
 
-/* ========================================
-   BRAND HEADER
-   ======================================== */
-.auth-brand {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: var(--space-8);
-    text-align: center;
-}
 
 .auth-brand-icon {
     width: 52px;
