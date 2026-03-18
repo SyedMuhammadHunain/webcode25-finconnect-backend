@@ -213,3 +213,39 @@
     opacity: 0.4;
     cursor: not-allowed;
 }
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+    .page-header {
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .page-title {
+        font-size: var(--text-xl);
+    }
+
+    .transfer-card {
+        max-width: 100%;
+        padding: var(--space-6);
+    }
+}
+
+@media (max-width: 480px) {
+    .transfer-card {
+        padding: var(--space-5);
+        border-radius: var(--radius-lg);
+    }
+
+    .transfer-card-header {
+        gap: var(--space-3);
+    }
+
+    .transfer-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}

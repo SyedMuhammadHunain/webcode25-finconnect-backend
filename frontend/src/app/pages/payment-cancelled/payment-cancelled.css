@@ -154,3 +154,32 @@
     color: var(--color-primary);
     background-color: var(--color-primary-subtle);
 }
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 520px) {
+    :host {
+        padding: var(--space-4);
+    }
+
+    .status-card {
+        padding: var(--space-8) var(--space-6);
+        gap: var(--space-6);
+    }
+
+    .status-title {
+        font-size: var(--text-xl);
+    }
+
+    .status-icon-wrap {
+        width: 72px;
+        height: 72px;
+    }
+
+    .status-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 24px;
+    }
+}

@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class DashboardLayoutComponent implements OnInit, OnDestroy {
     currentTime: string = '';
+    sidebarOpen: boolean = false;
     private timeInterval: any;
 
     ngOnInit(): void {
@@ -20,6 +21,14 @@ export class DashboardLayoutComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         if (this.timeInterval) clearInterval(this.timeInterval);
+    }
+
+    toggleSidebar(): void {
+        this.sidebarOpen = !this.sidebarOpen;
+    }
+
+    closeSidebar(): void {
+        this.sidebarOpen = false;
     }
 
     private updateTime(): void {

@@ -1,6 +1,9 @@
 <div class="dashboard-layout">
+    <!-- Sidebar Overlay (mobile) -->
+    <div class="sidebar-overlay" [class.active]="sidebarOpen" (click)="closeSidebar()"></div>
+
     <!-- Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar" [class.sidebar-open]="sidebarOpen">
         <!-- Brand -->
         <div class="sidebar-brand">
             <div class="brand-icon">
@@ -16,25 +19,26 @@
             <p class="nav-section-label">Main Menu</p>
             <ul>
                 <li>
-                    <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                        (click)="closeSidebar()">
                         <i class="pi pi-home nav-icon"></i>
                         <span>Overview</span>
                     </a>
                 </li>
                 <li>
-                    <a routerLink="/dashboard/transactions" routerLinkActive="active">
+                    <a routerLink="/dashboard/transactions" routerLinkActive="active" (click)="closeSidebar()">
                         <i class="pi pi-list nav-icon"></i>
                         <span>Transactions</span>
                     </a>
                 </li>
                 <li>
-                    <a routerLink="/dashboard/invoices" routerLinkActive="active">
+                    <a routerLink="/dashboard/invoices" routerLinkActive="active" (click)="closeSidebar()">
                         <i class="pi pi-file nav-icon"></i>
                         <span>Invoices</span>
                     </a>
                 </li>
                 <li>
-                    <a routerLink="/dashboard/transfer" routerLinkActive="active">
+                    <a routerLink="/dashboard/transfer" routerLinkActive="active" (click)="closeSidebar()">
                         <i class="pi pi-send nav-icon"></i>
                         <span>Transfer</span>
                     </a>
@@ -44,7 +48,7 @@
             <p class="nav-section-label" style="margin-top: 24px;">Account</p>
             <ul>
                 <li>
-                    <a routerLink="/subscription" routerLinkActive="active">
+                    <a routerLink="/subscription" routerLinkActive="active" (click)="closeSidebar()">
                         <i class="pi pi-star nav-icon"></i>
                         <span>Subscription</span>
                     </a>
@@ -72,6 +76,9 @@
         <!-- Top Bar -->
         <header class="topbar">
             <div class="topbar-left">
+                <button class="mobile-menu-btn" (click)="toggleSidebar()">
+                    <i class="pi pi-bars"></i>
+                </button>
                 <div class="breadcrumb-dot"></div>
                 <span class="topbar-title">Dashboard</span>
             </div>

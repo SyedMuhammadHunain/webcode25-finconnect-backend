@@ -5,7 +5,7 @@
     min-height: 100vh;
     background-color: var(--color-bg);
     background-image:
-        radial-gradient(ellipse 60% 50% at 50% -10%, rgba(180, 255, 0, 0.06) 0%, transparent 70%);
+        radial-gradient(ellipse 60% 50% at 50% -10%, rgba(180, 255, 0, 0.1) 0%, transparent 70%);
     padding: var(--space-6);
 }
 
@@ -23,6 +23,16 @@
     animation: slideIn 0.4s ease;
 }
 
+/* ========================================
+   BRAND HEADER
+   ======================================== */
+.auth-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--space-4);
+    text-align: center;
+}
 
 .auth-brand-icon {
     width: 52px;
@@ -50,13 +60,14 @@
 .auth-brand-sub {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
+    margin-bottom: 0;
 }
 
 /* Divider */
 .auth-divider {
     height: 1px;
     background: var(--color-border-subtle);
-    margin: var(--space-6) 0;
+    margin: var(--space-4) 0 var(--space-6) 0;
 }
 
 /* ========================================
@@ -120,6 +131,19 @@
     font-size: var(--text-sm);
 }
 
+/* Password strength panel override */
+::ng-deep .p-password-panel {
+    background-color: var(--color-bg-card) !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: var(--radius-md) !important;
+    color: var(--color-text) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+::ng-deep .p-password-panel .p-password-meter {
+    background-color: var(--color-bg-input) !important;
+}
+
 /* Validation message */
 .field-error {
     font-size: var(--text-xs);
@@ -181,4 +205,28 @@
 .auth-footer a strong {
     color: var(--color-primary);
     font-weight: 600;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 520px) {
+    :host {
+        padding: var(--space-4);
+    }
+
+    .auth-card {
+        padding: var(--space-8) var(--space-5);
+        border-radius: var(--radius-lg);
+    }
+
+    .auth-brand-name {
+        font-size: var(--text-xl);
+    }
+
+    .auth-brand-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+    }
 }
