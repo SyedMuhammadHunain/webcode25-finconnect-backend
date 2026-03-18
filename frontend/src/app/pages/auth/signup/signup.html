@@ -1,9 +1,7 @@
 <div class="auth-card">
     <!-- Brand Header -->
     <div class="auth-brand">
-        <div class="auth-brand-icon">
-            <i class="pi pi-bolt"></i>
-        </div>
+        <img src="apple-touch-icon.png" class="auth-logo" alt="FinConnect" />
         <h2 class="auth-brand-name">FinConnect</h2>
         <p class="auth-brand-sub">Create your account</p>
     </div>
@@ -19,10 +17,9 @@
                 <i class="pi pi-user form-label-icon"></i>
                 Username
             </label>
-            <p-floatlabel>
-                <input pInputText id="username" formControlName="username" type="text" />
-                <label for="username">Choose a username</label>
-            </p-floatlabel>
+            <div class="input-wrapper">
+                <input pInputText id="username" formControlName="username" type="text"  placeholder="Choose a username" class="w-full" />
+            </div>
             <div *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched">
                 <small class="field-error" *ngIf="signupForm.get('username')?.hasError('required')">
                     <i class="pi pi-exclamation-circle"></i> Username is required.
@@ -39,10 +36,9 @@
                 <i class="pi pi-envelope form-label-icon"></i>
                 Email Address
             </label>
-            <p-floatlabel>
-                <input pInputText id="email" formControlName="email" type="email" />
-                <label for="email">Enter your email</label>
-            </p-floatlabel>
+            <div class="input-wrapper">
+                <input pInputText id="email" formControlName="email" type="email"  placeholder="Enter your email" class="w-full" />
+            </div>
             <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
                 <small class="field-error" *ngIf="signupForm.get('email')?.hasError('required')">
                     <i class="pi pi-exclamation-circle"></i> Email is required.
@@ -59,12 +55,10 @@
                 <i class="pi pi-lock form-label-icon"></i>
                 Password
             </label>
-            <p-floatlabel>
+            <div class="input-wrapper">
                 <p-password id="password" formControlName="password" [toggleMask]="true" promptLabel="Choose a password"
-                    weakLabel="Too simple" mediumLabel="Average complexity" strongLabel="Complex password">
-                </p-password>
-                <label for="password">Create a password</label>
-            </p-floatlabel>
+                    weakLabel="Too simple" mediumLabel="Average complexity" strongLabel="Complex password" placeholder="Create a password" styleClass="w-full"></p-password>
+            </div>
             <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
                 <small class="field-error" *ngIf="signupForm.get('password')?.hasError('required')">
                     <i class="pi pi-exclamation-circle"></i> Password is required.

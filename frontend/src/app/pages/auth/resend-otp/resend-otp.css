@@ -33,18 +33,13 @@
     text-align: center;
 }
 
-.auth-brand-icon {
-    width: 52px;
-    height: 52px;
-    background: linear-gradient(135deg, var(--color-primary) 0%, #22c55e 100%);
-    border-radius: var(--radius-lg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    color: var(--color-primary-contrast);
+.auth-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-md);
+    display: block;
+    object-fit: contain;
     margin-bottom: var(--space-4);
-    box-shadow: 0 4px 20px rgba(22, 163, 74, 0.2);
 }
 
 .auth-brand-name {
@@ -120,13 +115,13 @@
 }
 
 /* PrimeNG Overrides (Light) */
-::ng-deep .auth-form .p-floatlabel {
+::ng-deep .auth-form .input-wrapper {
     width: 100%;
 }
 
-::ng-deep .auth-form .p-floatlabel input,
-::ng-deep .auth-form .p-floatlabel .p-password,
-::ng-deep .auth-form .p-floatlabel .p-password-input {
+::ng-deep .auth-form .input-wrapper input,
+::ng-deep .auth-form .input-wrapper .p-password,
+::ng-deep .auth-form .input-wrapper .p-password-input {
     width: 100%;
     background-color: var(--color-bg-input);
     border: 1.5px solid var(--color-border);
@@ -137,15 +132,15 @@
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
 }
 
-::ng-deep .auth-form .p-floatlabel input:focus,
-::ng-deep .auth-form .p-floatlabel .p-password-input:focus {
+::ng-deep .auth-form .input-wrapper input:focus,
+::ng-deep .auth-form .input-wrapper .p-password-input:focus {
     border-color: var(--color-primary) !important;
     box-shadow: 0 0 0 3px var(--color-primary-glow) !important;
     background-color: var(--color-bg-input);
     outline: none;
 }
 
-::ng-deep .auth-form .p-floatlabel label {
+::ng-deep .auth-form .input-wrapper label {
     color: var(--color-text-faint);
     font-size: var(--text-sm);
 }
@@ -254,9 +249,12 @@
         font-size: var(--text-xl);
     }
 
-    .auth-brand-icon {
-        width: 44px;
-        height: 44px;
-        font-size: 18px;
-    }
+    .auth-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-md);
+    display: block;
+    object-fit: contain;
+    margin-bottom: var(--space-4);
+}
 }

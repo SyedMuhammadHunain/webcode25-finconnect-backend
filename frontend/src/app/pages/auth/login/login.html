@@ -1,9 +1,7 @@
 <div class="auth-card">
     <!-- Brand Header -->
     <div class="auth-brand">
-        <div class="auth-brand-icon">
-            <i class="pi pi-bolt"></i>
-        </div>
+        <img src="apple-touch-icon.png" class="auth-logo" alt="FinConnect" />
         <h2 class="auth-brand-name">FinConnect</h2>
         <p class="auth-brand-sub">Sign in to your account</p>
     </div>
@@ -19,10 +17,9 @@
                 <i class="pi pi-envelope form-label-icon"></i>
                 Email Address
             </label>
-            <p-floatlabel>
-                <input pInputText id="login-email" formControlName="email" type="email" />
-                <label for="login-email">Enter your email</label>
-            </p-floatlabel>
+            <div class="input-wrapper">
+                <input pInputText id="login-email" formControlName="email" type="email"  placeholder="Enter your email" class="w-full" />
+            </div>
             <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
                 <p-message severity="error" *ngIf="loginForm.get('email')?.hasError('required')"
                     text="Email is required." styleClass="field-error-msg" />
@@ -37,11 +34,10 @@
                 <i class="pi pi-lock form-label-icon"></i>
                 Password
             </label>
-            <p-floatlabel>
+            <div class="input-wrapper">
                 <p-password id="login-password" formControlName="password" [feedback]="false"
-                    [toggleMask]="true"></p-password>
-                <label for="login-password">Enter your password</label>
-            </p-floatlabel>
+                    [toggleMask]="true" placeholder="Enter your password" styleClass="w-full"></p-password>
+            </div>
             <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
                 <p-message severity="error" *ngIf="loginForm.get('password')?.hasError('required')"
                     text="Password is required." styleClass="field-error-msg" />
@@ -55,10 +51,9 @@
                 OTP Code
                 <a routerLink="/resend-otp" class="resend-link">Resend OTP</a>
             </label>
-            <p-floatlabel>
-                <input pInputText id="login-code" formControlName="code" type="text" />
-                <label for="login-code">Enter your OTP from email</label>
-            </p-floatlabel>
+            <div class="input-wrapper">
+                <input pInputText id="login-code" formControlName="code" type="text"  placeholder="Enter your OTP from email" class="w-full" />
+            </div>
             <div *ngIf="loginForm.get('code')?.invalid && loginForm.get('code')?.touched">
                 <p-message severity="error" *ngIf="loginForm.get('code')?.hasError('required')"
                     text="OTP Code is required." styleClass="field-error-msg" />

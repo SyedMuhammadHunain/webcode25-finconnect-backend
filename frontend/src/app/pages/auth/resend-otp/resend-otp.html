@@ -1,9 +1,7 @@
 <div class="auth-card">
     <!-- Brand Header -->
     <div class="auth-brand">
-        <div class="auth-brand-icon">
-            <i class="pi pi-bolt"></i>
-        </div>
+        <img src="apple-touch-icon.png" class="auth-logo" alt="FinConnect" />
         <h2 class="auth-brand-name">FinConnect</h2>
         <p class="auth-brand-sub">Resend your OTP code</p>
     </div>
@@ -25,10 +23,9 @@
                 <i class="pi pi-envelope form-label-icon"></i>
                 Email Address
             </label>
-            <p-floatlabel>
-                <input pInputText id="ro-email" formControlName="email" type="email" />
-                <label for="ro-email">Enter your email address</label>
-            </p-floatlabel>
+            <div class="input-wrapper">
+                <input pInputText id="ro-email" formControlName="email" type="email"  placeholder="Enter your email address" class="w-full" />
+            </div>
             <div *ngIf="resendOtpForm.get('email')?.invalid && resendOtpForm.get('email')?.touched">
                 <p-message severity="error" *ngIf="resendOtpForm.get('email')?.hasError('required')"
                     text="Email is required." styleClass="field-error-msg" />

@@ -1,9 +1,7 @@
 <div class="auth-card">
     <!-- Brand Header -->
     <div class="auth-brand">
-        <div class="auth-brand-icon">
-            <i class="pi pi-bolt"></i>
-        </div>
+        <img src="apple-touch-icon.png" class="auth-logo" alt="FinConnect" />
         <h2 class="auth-brand-name">FinConnect</h2>
         <p class="auth-brand-sub">Sign in without OTP</p>
     </div>
@@ -19,10 +17,9 @@
                 <i class="pi pi-envelope form-label-icon"></i>
                 Email Address
             </label>
-            <p-floatlabel>
-                <input pInputText id="lv-email" formControlName="email" type="email" />
-                <label for="lv-email">Enter your email</label>
-            </p-floatlabel>
+            <div class="input-wrapper">
+                <input pInputText id="lv-email" formControlName="email" type="email"  placeholder="Enter your email" class="w-full" />
+            </div>
             <div *ngIf="loginVerifiedForm.get('email')?.invalid && loginVerifiedForm.get('email')?.touched">
                 <p-message severity="error" *ngIf="loginVerifiedForm.get('email')?.hasError('required')"
                     text="Email is required." styleClass="field-error-msg" />
@@ -37,11 +34,9 @@
                 <i class="pi pi-lock form-label-icon"></i>
                 Password
             </label>
-            <p-floatlabel>
-                <p-password id="lv-password" formControlName="password" [feedback]="false" [toggleMask]="true">
-                </p-password>
-                <label for="lv-password">Enter your password</label>
-            </p-floatlabel>
+            <div class="input-wrapper">
+                <p-password id="lv-password" formControlName="password" [feedback]="false" [toggleMask]="true" placeholder="Enter your password" styleClass="w-full"></p-password>
+            </div>
             <div *ngIf="loginVerifiedForm.get('password')?.invalid && loginVerifiedForm.get('password')?.touched">
                 <p-message severity="error" *ngIf="loginVerifiedForm.get('password')?.hasError('required')"
                     text="Password is required." styleClass="field-error-msg" />
