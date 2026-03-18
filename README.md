@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="frontend/public/web-app-manifest-512x512.png" alt="FinConnect Logo" width="150" />
+  <img src="banner.png" alt="FinConnect Logo" width="150" />
   <h1>FinConnect Platform</h1>
   <br/>
   
