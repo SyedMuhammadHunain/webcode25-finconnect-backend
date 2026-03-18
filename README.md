@@ -1,5 +1,7 @@
 <div align="center">
   <img src="banner.png" alt="FinConnect Logo" width="100%" />
+  <h1>FinConnect Platform</h1>
+  <br/>
   
   <a href="https://git.io/typing-svg">
     <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=30&pause=1000&color=ffffff&center=true&vCenter=true&width=800&lines=FinConnect+Full-Stack+Portal;Powered+by+Angular+21,+NestJS+11+%26+MongoDB;Secure,+Scalable,+Fintech+Platform" alt="Typing SVG" />
@@ -36,7 +38,7 @@
 
 ## 📖 Introduction
 
-Welcome to **FinConnect**! An ambitious full-stack financial technology portal combining robust internal systems and intuitive user-facing features to emulate real-world transactional portals. Built with cutting-edge **Angular 21** for UI dynamism and **NestJS 11** for a rock-solid, secure backend. 
+Welcome to **FinConnect**! This project is a robust, full-stack sandbox portal where developers can register, subscribe to a plan, and access a suite of mock financial APIs. The system is secured with **JWT (JSON Web Tokens)** and **RBAC (Role-Based Access Control)**, ensuring enterprise-grade security.
 
 Key infrastructure pillars include:
 *   **Secure Authentication:** Utilizes JWT and OTP-based login (2FA) verification via email modules.
