@@ -41,10 +41,6 @@
     transition: box-shadow var(--transition-base), border-color var(--transition-base);
 }
 
-.balance-hero:hover {
-    border-color: rgba(22, 163, 74, 0.3);
-    box-shadow: 0 4px 30px rgba(22, 163, 74, 0.08), var(--shadow-lg);
-}
 
 .balance-hero-inner {
     position: relative;
@@ -139,12 +135,6 @@
     padding: var(--space-5);
     transition: all var(--transition-base);
     cursor: default;
-}
-
-.stat-card:hover {
-    border-color: var(--color-border-active);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
 }
 
 .stat-icon {
